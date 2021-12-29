@@ -6,6 +6,7 @@ if (process.env.DATABASE_URL)
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     ssl: true,
     dialect: "postgres",
+    logging: false,
     dialectOptions: { ssl: { require: true, rejectUnauthorized: false } },
   });
 else
@@ -16,12 +17,13 @@ else
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    logging: false,
   });
 
 export async function connectDb() {
   try {
     await sequelize.authenticate();
-    console.log("Established connection to DB");
+    console.info("Established connection to DB");
   } catch (error) {
     console.error("DB connection error: " + error);
     throw error;
