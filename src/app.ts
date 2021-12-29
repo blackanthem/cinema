@@ -1,20 +1,8 @@
 import express from "express";
-import movieModel from "./models/movie.model";
+import routes from "./routes";
 
 const app = express();
 
-app.get("/", async (req, res) => {
-  try {
-    const movie = await movieModel.create({
-      id: Math.floor(Math.random() * 200),
-      title: "Hello",
-    });
-    res.send(movie);
-  } catch (error) {
-    console.error(error);
-
-    res.send(error);
-  }
-});
+app.use("/v1", routes);
 
 export default app;
