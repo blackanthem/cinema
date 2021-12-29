@@ -3,7 +3,11 @@ import { Sequelize } from "sequelize";
 let sequelize: Sequelize;
 
 if (process.env.DATABASE_URL)
-  sequelize = new Sequelize(process.env.DATABASE_URL);
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    ssl: true,
+    dialect: "postgres",
+    dialectOptions: { ssl: { require: true, rejectUnauthorized: false } },
+  });
 else
   sequelize = new Sequelize({
     dialect: "postgres",
