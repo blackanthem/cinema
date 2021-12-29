@@ -1,0 +1,32 @@
+{
+  "name": "cinema-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "start": "node build/index.js",
+    "start:dev": "nodemon src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "joi": "^17.5.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.4"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.5",
+    "@types/validator": "^13.7.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
