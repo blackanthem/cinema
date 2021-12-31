@@ -11,11 +11,11 @@ describe("TMDB Service", () => {
     it("should return an array of movies", async () => {
       const query = "venom";
 
-      const movies = await tmdbService.searchMovie(query);
+      const movies = await tmdbService.searchMovies(query);
 
       expect(movies).to.be.an("array");
 
-      if (movies.length === 0) return;
+      if (!movies || movies.length === 0) return;
 
       const movie = movies[0];
 
@@ -31,7 +31,13 @@ describe("TMDB Service", () => {
       const path = `/search/movie?language=en-US&query=${query}&page=1&include_adult=true`;
       tmdbApi.get(path).reply(200, { results: null });
 
-      return expect(tmdbService.searchMovie(query)).to.eventually.be.rejected;
+      return expect(tmdbService.searchMovies(query)).to.eventually.be.rejected;
     });
+  });
+
+  describe("movieDetails", async () => {
+    const movieId = 557;
+
+    const data = tmdbService.movieDetails(movieId);
   });
 });
