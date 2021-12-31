@@ -2,8 +2,17 @@
 @import "../assets/scss/vars";
 @import "../assets/scss/text";
 
-body {
+:root {
+  --black: #1a1a1d;
+}
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: $body-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
