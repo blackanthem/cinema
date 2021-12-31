@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build",
+    "heroku-postbuild": "cd client && npm install && npm run react:build",
     "start": "node build/index.js",
     "start:dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
