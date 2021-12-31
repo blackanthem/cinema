@@ -54,6 +54,19 @@ interface Crew extends Personnel {
   job: string;
 }
 
+interface Video {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: false;
+  published_at: string;
+  id: string;
+}
+
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;
@@ -81,4 +94,7 @@ export interface MovieDetails {
   vote_average: number;
   vote_count: number;
   credits: { cast: Cast[]; crew: Crew[] };
+  videos: {
+    results: Video[];
+  };
 }

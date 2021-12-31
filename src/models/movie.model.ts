@@ -17,6 +17,13 @@ export interface Showtime {
   sunday?: string[];
 }
 
+interface Video {
+  key: string;
+  type: string;
+  official: boolean;
+  id: string;
+}
+
 interface MovieAttributes {
   id: number;
   title: string;
@@ -34,6 +41,7 @@ interface MovieAttributes {
   ticketPrice: number;
   showTimes: Showtime;
   isFeature: boolean;
+  videos: Video[];
 }
 
 interface MovieCreationAttributes extends Optional<MovieAttributes, "id"> {}
@@ -59,6 +67,7 @@ const movieModel = sequelize.define<MovieInstance>("Movie", {
   ticketPrice: { type: DataTypes.STRING, allowNull: false },
   showTimes: { type: DataTypes.JSON, allowNull: false },
   isFeature: { type: DataTypes.BOOLEAN, defaultValue: false },
+  videos: { type: DataTypes.JSON },
 });
 
 movieModel.sync();

@@ -27,7 +27,7 @@ export async function searchMovies(query: string) {
 
 export async function movieDetails(id: number) {
   try {
-    const path = `/movie/${id}?append_to_response=credits`;
+    const path = `/movie/${id}?append_to_response=credits,videos`;
     const imageBaseUrl = "https://image.tmdb.org/t/p";
     const response = await axios.get(path);
 
@@ -46,18 +46,25 @@ export async function movieDetails(id: number) {
       med: `${imageBaseUrl}/w780${movieDetails.backdrop_path}`,
       max: `${imageBaseUrl}/w1280${movieDetails.backdrop_path}`,
     };
+
     const posterPath = {
       min: `${imageBaseUrl}/w342${movieDetails.poster_path}`,
       max: `${imageBaseUrl}/w500${movieDetails.poster_path}`,
     };
+
     const runtime = (function () {
-      const found = (movieDetails.runtime / 60).toString().match(/^\d+/)![0];
+      const found = (movieDetails.runtime / 60).toString().match(/^\d+/);
       if (!found) return "0h 0m";
 
       const hour = found[0];
       const minutes = movieDetails.runtime % 60;
       return `${hour}h ${minutes}m`;
     })();
+
+    const videos = movieDetails.videos.results.map((video) => {
+      const { key, type, official, id } = video;
+      return { key, type, official, id };
+    });
 
     return {
       id: movieDetails.id,
@@ -70,6 +77,7 @@ export async function movieDetails(id: number) {
       posterPath,
       releaseDate: new Date(movieDetails.release_date),
       runtime,
+      videos,
     };
   } catch (error) {
     return handleError(error);
