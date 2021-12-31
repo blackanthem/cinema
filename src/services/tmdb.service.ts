@@ -61,10 +61,12 @@ export async function movieDetails(id: number) {
       return `${hour}h ${minutes}m`;
     })();
 
-    const videos = movieDetails.videos.results.map((video) => {
-      const { key, type, official, id } = video;
-      return { key, type, official, id };
-    });
+    const videos = movieDetails.videos.results
+      .filter((video) => video.site === "YouTube")
+      .map((video) => {
+        const { key, type, official, id } = video;
+        return { key, type, official, id };
+      });
 
     return {
       id: movieDetails.id,
