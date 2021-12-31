@@ -28,3 +28,12 @@ export async function postMovie(req: Req, res: Res) {
     handleHttpError(res, error);
   }
 }
+
+export async function getMovies(req: Req, res: Res) {
+  try {
+    const movies = await movieService.getAllMovies();
+    res.send(movies)
+  } catch (error) {
+    handleHttpError(res, error);
+  }
+}

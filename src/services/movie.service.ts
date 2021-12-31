@@ -12,3 +12,11 @@ export async function saveMovie(params: PostMovie) {
     throw error;
   }
 }
+
+export async function getAllMovies() {
+  try {
+    return await movieModel.findAll();
+  } catch (error) {
+    throw error;
+  }
+}

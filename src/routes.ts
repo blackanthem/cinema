@@ -3,6 +3,8 @@ import * as movieController from "./controllers/movie.controller";
 
 const router = express.Router();
 
+router.get("/movies", movieController.getMovies);
+
 router.get("/search-movie", movieController.getMovieSearchResults);
 router.post("/movie", movieController.postMovie);
 
