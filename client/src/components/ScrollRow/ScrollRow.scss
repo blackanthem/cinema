@@ -1,0 +1,23 @@
+.scroll-row {
+  position: relative;
+
+  &:hover .scroll-button {
+    visibility: visible !important;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-rows: 464px;
+    grid-auto-columns: 278px;
+    grid-auto-flow: column;
+    gap: 15px;
+    overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

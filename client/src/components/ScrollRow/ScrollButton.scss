@@ -1,0 +1,28 @@
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70px;
+  width: 70px;
+  background: white;
+  z-index: 50;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+
+  &.left {
+    left: 30px;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.right {
+    right: 30px;
+  }
+}
