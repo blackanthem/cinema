@@ -49,7 +49,7 @@ export default function Hero(props) {
         <div className="hero__filter"></div>
       </div>
 
-      <div className="hero__text">
+      <div className="hero__text d-sidepadding">
         <div className="hero__text__overview">
           <h1>{title}</h1>
           <p className="sub-text">{overview}</p>

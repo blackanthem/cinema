@@ -7,7 +7,7 @@
   overflow: hidden;
 
   &.is-loading {
-    background-color: red;
+    background-color: #29292e;
     background: linear-gradient(0.25turn, transparent, #29292e, transparent);
     background-repeat: no-repeat;
     background-size: 200% 200%;
@@ -50,10 +50,23 @@
     justify-content: flex-end;
     padding: 20px 18px;
 
+    h2,
     p {
-      font-size: 0.875rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    h2{
+      font-size: 1.375rem;
+    }
+
+    p {
+      font-size: 0.85em;
       opacity: 0.75;
       margin-top: 3px;
+      font-weight: 300;
     }
   }
 }

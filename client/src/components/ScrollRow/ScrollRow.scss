@@ -2,18 +2,17 @@
   position: relative;
 
   &:hover .scroll-button {
-    visibility: visible !important;
+    // visibility: visible !important;
+    opacity: 1;
   }
 
   &__wrapper {
     display: grid;
-    grid-template-rows: 464px;
-    grid-auto-columns: 278px;
     grid-auto-flow: column;
     gap: 15px;
     overflow: auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {

@@ -2,27 +2,23 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 70px;
-  width: 70px;
-  background: white;
+  height: 60px;
+  width: 60px;
+  background: transparent no-repeat;
+  background-position: center center;
   z-index: 50;
-  border-radius: 50%;
   border: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
 
   &.left {
     left: 30px;
-
-    svg {
-      transform: rotate(180deg);
-    }
+    background-image: url("../../assets/images/left-arrow.svg");
   }
 
   &.right {
     right: 30px;
+    background-image: url("../../assets/images/right-arrow.svg");
   }
 }

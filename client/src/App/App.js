@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import './App.scss'
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <h1>Parasite</h1> is king <Outlet />{" "}
+      <Outlet />
     </div>
   );
 }

@@ -4,6 +4,7 @@
 
 :root {
   --black: #1a1a1d;
+  --border-radius: 8px;
 }
 
 * {
@@ -16,9 +17,31 @@ body {
   font-family: $body-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--black);
+  color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button {
+  font-family: inherit;
+}
+
+.sub-text {
+  opacity: 0.8;
+  font-weight: 300;
+
+  &__title {
+    font-weight: bold;
+  }
+}
+
+.d-sidepadding {
+  $padding: 58px;
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+.home.page{
+  section{
+    margin-bottom: 62px;
+  }
 }

@@ -5,9 +5,7 @@ import { createRef } from "react";
 // import scrollReachEnds from "../../utils/scrollReachEnds";
 
 export default function ScrollRow(props) {
-  const { movies } = props;
-
-  if (!movies) return <div>no movie man</div>;
+  const { children, height, width } = props;
 
   const ref = createRef();
 
@@ -18,13 +16,13 @@ export default function ScrollRow(props) {
     scrollRow.scrollBy({ left });
   }
 
+  const styles = { gridTemplateRows: height, gridAutoColumns: width };
+
   return (
     <div className="scroll-row ">
       <ScrollButton direction="left" onClick={() => handleClick("left")} />
-      <div className="scroll-row__wrapper" ref={ref}>
-        {movies.map((movie) => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))}
+      <div className="scroll-row__wrapper" style={styles} ref={ref}>
+        {children}
       </div>
       <ScrollButton direction="right" onClick={() => handleClick("right")} />
     </div>
