@@ -1,0 +1,16 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 49px;
+  z-index: 100000;
+  transition: all 0.4s;
+
+  &.opaque {
+    background: var(--black);
+    $padding: 15px;
+    padding-top: $padding;
+    padding-bottom: $padding;
+  }
+}

@@ -25,12 +25,11 @@ button {
   font-family: inherit;
 }
 
-.sub-text {
-  opacity: 0.8;
-  font-weight: 300;
 
-  &__title {
-    font-weight: bold;
+
+main {
+  > div {
+    min-height: 100vh;
   }
 }
 
@@ -40,8 +39,8 @@ button {
   padding-right: $padding;
 }
 
-.home.page{
-  section{
+.home.page {
+  section {
     margin-bottom: 62px;
   }
 }
