@@ -21,7 +21,7 @@ export default function ScrollRow(props) {
   return (
     <div className="scroll-row ">
       <ScrollButton direction="left" onClick={() => handleClick("left")} />
-      <div className="scroll-row__wrapper" style={styles} ref={ref}>
+      <div className="scroll-row__wrapper" style={{}} ref={ref}>
         {children}
       </div>
       <ScrollButton direction="right" onClick={() => handleClick("right")} />

@@ -17,8 +17,6 @@ export default function Home() {
       .filter((movie) => movie.status === "now showing")
       .map((movie) => <MovieCard movie={movie} key={movie.id} />);
 
-  const emptyCard = () => {};
-
   return (
     <div className="home page">
       <section>
@@ -27,16 +25,12 @@ export default function Home() {
 
       <section className="d-sidepadding">
         <h2>Now showing</h2>
-        <ScrollRow height={464} width={278}>
-          {data && nowShowing()}
-        </ScrollRow>
+        <ScrollRow>{data && nowShowing()}</ScrollRow>
       </section>
 
       <section className="d-sidepadding">
         <h2>coming soon</h2>
-        <ScrollRow height={464} width={278}>
-          {data && comingSoon()}
-        </ScrollRow>
+        <ScrollRow>{data && comingSoon()}</ScrollRow>
       </section>
     </div>
   );

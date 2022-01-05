@@ -2,12 +2,13 @@
   position: relative;
 
   &:hover .scroll-button {
-    // visibility: visible !important;
     opacity: 1;
   }
 
   &__wrapper {
     display: grid;
+    grid-template-rows: auto;
+    grid-auto-columns: auto;
     grid-auto-flow: column;
     gap: 15px;
     overflow: auto;
