@@ -1,0 +1,25 @@
+.cast-card {
+  width: 143px;
+
+  &__img-wrapper {
+    height: 196px;
+    margin-bottom: 8px;
+  }
+
+  &__img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+
+  &__character {
+    font-weight: 300;
+    font-size: 0.875rem;
+  }
+}

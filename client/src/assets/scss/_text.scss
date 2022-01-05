@@ -14,3 +14,17 @@ h1 {
 h2 {
   font-size: 2rem;
 }
+
+h3 {
+  font-size: 1.375rem;
+  text-transform: capitalize;
+}
+
+.sub-text {
+  opacity: 0.9;
+  font-weight: 300;
+
+  &__title {
+    font-weight: bold;
+  }
+}

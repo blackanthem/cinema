@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./MovieCard.scss";
 
 export default function MovieCard(props) {
@@ -5,10 +6,10 @@ export default function MovieCard(props) {
 
   if (!movie) return <a href="#" className="movie-card is-loading"></a>;
 
-  const { posterPath, title, tagline } = movie;
+  const { posterPath, title, tagline, id } = movie;
 
   return (
-    <a href="#" className="movie-card">
+    <Link to={`/movie/${id}`} className="movie-card">
       &nbsp;
       <div className="movie-card__img">
         <img src={posterPath.max} alt={title} aria-label={title} />
@@ -18,6 +19,6 @@ export default function MovieCard(props) {
         <h2>{title}</h2>
         <p>{tagline} </p>
       </div>
-    </a>
+    </Link>
   );
 }

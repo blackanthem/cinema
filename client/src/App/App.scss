@@ -18,14 +18,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--black);
-  color: white;
+  color: #e2e2ee;
 }
 
 button {
   font-family: inherit;
 }
-
-
 
 main {
   > div {
@@ -37,6 +35,10 @@ main {
   $padding: 58px;
   padding-left: $padding;
   padding-right: $padding;
+}
+
+.d-toppadding {
+  padding-top: 90px;
 }
 
 .home.page {

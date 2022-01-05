@@ -7,6 +7,7 @@ import { store } from "./store/store";
 
 import reportWebVitals from "./reportWebVitals";
 import Home from "./pages/Home/Home";
+import MovieDetails from "./pages/MovieDetails/MovieDetails";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,8 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="" element={<Home />}></Route>
+            <Route path="" element={<Home />} />
+            <Route path="movie/:id" element={<MovieDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>
