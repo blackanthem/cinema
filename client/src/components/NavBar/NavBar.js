@@ -1,7 +1,7 @@
 import "./NavBar.scss";
 import logo from "../../assets/images/logo.svg";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function NavBar() {
   const [opaque, setOpaque] = useState(false);
@@ -28,7 +28,9 @@ export default function NavBar() {
 
   return (
     <nav className={className()}>
-      <img src={logo}></img>
+      <Link to="/">
+        <img src={logo}></img>
+      </Link>
     </nav>
   );
 }
