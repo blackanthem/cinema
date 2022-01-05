@@ -3,14 +3,16 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  padding-top: 49px;
+  $padding: 24px;
+  padding-top: $padding ;
   z-index: 100000;
-  transition: all 0.4s;
+  transition: all 0.4s, border 0s 0.4s;
 
   &.opaque {
     background: var(--black);
     $padding: 15px;
     padding-top: $padding;
     padding-bottom: $padding;
+    border-bottom: 1px solid #242428;
   }
 }
