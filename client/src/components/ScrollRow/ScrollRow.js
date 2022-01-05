@@ -27,8 +27,10 @@ export default function ScrollRow(props) {
 
     scrollRow.addEventListener("scroll", showScrollButtons);
 
-    return () => scrollRow.removeEventListener("scroll", showScrollButtons);
-  });
+    return () => {
+      scrollRow.removeEventListener("scroll", showScrollButtons);
+    };
+  }, []);
 
   return (
     <div className="scroll-row ">

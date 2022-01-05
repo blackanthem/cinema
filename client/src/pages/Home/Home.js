@@ -8,14 +8,21 @@ export default function Home() {
   const { data, isSuccess } = useGetMoviesQuery();
 
   const featureMovie = () => data.find((movie) => movie.isFeature);
+
   const comingSoon = () =>
     data
       .filter((movie) => movie.status === "coming soon")
       .map((movie) => <MovieCard movie={movie} key={movie.id} />);
+
   const nowShowing = () =>
     data
       .filter((movie) => movie.status === "now showing")
       .map((movie) => <MovieCard movie={movie} key={movie.id} />);
+
+  const emptyCards = () =>
+    Array(4)
+      .fill(null)
+      .map(() => <MovieCard movie={null} key={Math.random() * 10} />);
 
   return (
     <div className="home page">
@@ -25,12 +32,14 @@ export default function Home() {
 
       <section className="d-sidepadding">
         <h2>Now showing</h2>
-        <ScrollRow>{data && nowShowing()}</ScrollRow>
+        {!data && <ScrollRow>{emptyCards()}</ScrollRow>}
+        {data && <ScrollRow>{nowShowing()}</ScrollRow>}
       </section>
 
       <section className="d-sidepadding">
         <h2>coming soon</h2>
-        <ScrollRow>{data && comingSoon()}</ScrollRow>
+        {!data && <ScrollRow>{emptyCards()}</ScrollRow>}
+        {data && <ScrollRow>{comingSoon()}</ScrollRow>}
       </section>
     </div>
   );
