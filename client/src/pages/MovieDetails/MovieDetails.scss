@@ -1,6 +1,6 @@
 .movie-details {
   background-color: var(--black);
-  background-attachment:  fixed;
+  background-attachment: fixed;
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,7 +17,7 @@
     background-color: var(--black);
     padding: 13px;
     text-align: center;
-    border: 1px solid #29292E;
+    border: 1px solid #29292e;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -51,13 +51,13 @@
     }
 
     button {
-      justify-self:left;
+      justify-self: left;
     }
   }
 
   .content {
     > div {
-      margin-bottom:80px;
+      margin-bottom: 80px;
     }
 
     h3 {
@@ -89,6 +89,13 @@
     }
 
     .videos {
+      .yt-player,
+      iframe {
+        width: 380px !important;
+        height: 200px !important;
+        border-radius: var(--border-radius);
+      }
+
       iframe {
         border-radius: var(--border-radius);
       }

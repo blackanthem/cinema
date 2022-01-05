@@ -40,5 +40,5 @@ export default function YouTube(props) {
     else player.pauseVideo();
   }, [play]);
 
-  return <div id={videoId}></div>;
+  return <div id={videoId} className="yt-player"></div>;
 }

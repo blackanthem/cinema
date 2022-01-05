@@ -12,6 +12,11 @@
   opacity: 0;
   transition: opacity 0.2s;
 
+  &.hide {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
   &.left {
     left: 30px;
     background-image: url("../../assets/images/left-arrow.svg");

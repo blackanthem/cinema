@@ -1,21 +1,35 @@
-function end(element) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const distanceLeft = Math.ceil(element.scrollWidth - element.scrollLeft);
+const delay = 0;
 
-      if (distanceLeft === element.clientWidth) return resolve("at-end");
-      resolve("");
-    }, 500);
-  });
+// function end(element) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       const distanceLeft = Math.ceil(element.scrollWidth - element.scrollLeft);
+
+//       if (distanceLeft === element.clientWidth) return resolve(true);
+//       resolve(false);
+//     }, delay);
+//   });
+// }
+
+// function start(element) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       if (element.scrollLeft === 0) return resolve(true);
+//       resolve(false);
+//     }, delay);
+//   });
+// }
+
+function end(element) {
+  const distanceLeft = Math.ceil(element.scrollWidth - element.scrollLeft);
+
+  if (distanceLeft === element.clientWidth) return true;
+  return false;
 }
 
 function start(element) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if (element.scrollLeft === 0) return resolve("at-start");
-      resolve("");
-    }, 500);
-  });
+  if (element.scrollLeft === 0) return true;
+  return false;
 }
 
-export default { end, start };
+export { end, start };
