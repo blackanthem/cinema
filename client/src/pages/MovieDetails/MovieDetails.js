@@ -27,8 +27,8 @@ export default function MovieDetails(props) {
 
   if (!movie?.title)
     return (
-      <div className="movie-details  page d-sidepadding d-toppadding">
-        <section className="summary loading"></section>
+      <div className="movie-details  page two-columns d-sidepadding d-toppadding">
+        <section className="summary loading two-columns__left"></section>
       </div>
     );
 
@@ -61,10 +61,10 @@ export default function MovieDetails(props) {
 
   return (
     <div
-      className="movie-details page d-sidepadding d-toppadding"
+      className="movie-details page two-columns d-sidepadding d-toppadding"
       style={{ backgroundImage: `url(${movie.backdropPath.max})` }}
     >
-      <section className="summary">
+      <section className="summary two-columns__left ">
         <div className="summary__text">
           <h2>{movie.title}</h2>
           <p className="sub-text">{movie.genre}</p>
