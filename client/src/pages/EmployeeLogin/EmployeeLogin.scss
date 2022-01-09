@@ -1,0 +1,31 @@
+.employee-login {
+  background-image: url("./../../assets/images/people-watching-movie.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .login-form {
+    background-color: var(--black);
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    > div{
+      // padding: 48px;
+    }
+
+    h1 {
+      font-size: 1.375rem;
+      text-transform: capitalize;
+      margin-bottom: 70px;
+    }
+
+    .text-field {
+      margin-bottom: 30px;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
