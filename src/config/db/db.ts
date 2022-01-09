@@ -23,6 +23,8 @@ else
 export async function connectDb() {
   try {
     await sequelize.authenticate();
+    await sequelize.sync()
+    
     console.info("Established connection to DB");
   } catch (error) {
     console.error("DB connection error: " + error);

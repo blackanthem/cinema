@@ -23,6 +23,5 @@ const userModel = sequelize.define<UserInstance>("User", {
   password: { type: DataTypes.STRING, allowNull: false },
 });
 
-userModel.sync();
 
 export default userModel;

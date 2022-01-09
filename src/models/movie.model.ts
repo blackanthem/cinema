@@ -70,7 +70,6 @@ const movieModel = sequelize.define<MovieInstance>("Movie", {
   videos: { type: DataTypes.JSON },
 });
 
-movieModel.sync();
 
 export default movieModel;
 
