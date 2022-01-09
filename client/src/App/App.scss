@@ -4,7 +4,9 @@
 
 :root {
   --black: #1a1a1d;
+  --red: #ff2c1f;
   --border-radius: 8px;
+  --body-color: #e2e2ee;
 }
 
 * {
@@ -39,7 +41,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #423D48;
+  background: #423d48;
 }
 
 button {
@@ -71,7 +73,7 @@ main {
 .page.two-columns {
   display: grid;
   grid-template: auto / 364px minmax(0, 1fr);
-  gap: 150px;
+  gap: 100px;
   position: relative;
 }
 
@@ -81,9 +83,8 @@ main {
     position: sticky;
     padding: 13px;
     top: 100px;
-    display: flex;
-    flex-direction: column;
     border-radius: var(--border-radius);
+    border: 1px solid #29292e;
 
     &.loading {
       background-color: #242428;
@@ -94,4 +95,12 @@ main {
       border: 0.5px solid #242428;
     }
   }
+}
+
+.bg-img-dark {
+  background-color: var(--black);
+  background-attachment: fixed;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
