@@ -3,16 +3,18 @@ import getTrailer from "../../utils/getTrailer";
 import YouTube from "../YouTube/YouTube";
 import { useState } from "react";
 import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero(props) {
   const { getFeatureMovie, loaded } = props;
   const [play, setPlay] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
+  const navigate = useNavigate();
 
   if (!loaded) return <div>Heroer</div>;
 
-  const { backdropPath, title, overview, videos, cast } = getFeatureMovie();
+  const { backdropPath, title, overview, videos, cast, id } = getFeatureMovie();
 
   const handleYtStateChange = (state) => {
     if (state === "playing") setPlaying(true);
@@ -24,6 +26,10 @@ export default function Hero(props) {
       setPlay(false);
     }
     if (state === "ready") setPlayerReady(true);
+  };
+
+  const handleClick = () => {
+    navigate(`movie/${id}/buy-ticket`);
   };
 
   const classNames = () => {
@@ -52,8 +58,8 @@ export default function Hero(props) {
       <div className="hero__text d-sidepadding">
         <div className="hero__text__overview">
           <h1>{title}</h1>
-          <p className="sub-text">{overview}</p>
-          <Button text="get tickets" />
+          <p>{overview}</p>
+          <Button text="get tickets" onClick={() => handleClick()} />
         </div>
         <div className="hero__text__play-button">
           <button onClick={() => setPlay(!play)} className={`${play}`}>

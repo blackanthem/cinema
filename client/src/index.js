@@ -8,6 +8,7 @@ import { store } from "./store/store";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./pages/Home/Home";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
+import BuyTicket from "./pages/BuyTicket/BuyTicket";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
           <Route path="/" element={<App />}>
             <Route path="" element={<Home />} />
             <Route path="movie/:id" element={<MovieDetails />} />
+            <Route path="movie/:id/buy-ticket" element={<BuyTicket />} />
           </Route>
         </Routes>
       </BrowserRouter>

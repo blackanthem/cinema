@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useGetMoviesQuery } from "../../services/api";
-import { getAverageColor, useWhiteText } from "../../utils/color";
 import "./MovieDetails.scss";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetMoviesQuery } from "../../services/api";
 import Button from "../../components/Button/Button";
 import ScrollRow from "../../components/ScrollRow/ScrollRow";
 import CastCard from "../../components/CastCard/CastCard";
@@ -13,21 +12,22 @@ export default function MovieDetails(props) {
   const { id: movieId } = useParams();
   const { data, isSuccess } = useGetMoviesQuery();
   const [movie, setMovie] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isSuccess) return;
     const found = data.find((movie) => movie.id === +movieId);
     // if not found display 404
-    getAverageColor(found.posterPath.max).then((color) => {
-      color = Array.from(color);
-
-      setMovie({ ...found, color });
-    });
+    setMovie(found);
   }, [isSuccess]);
+
+  const handleClick = () => {
+    navigate("buy-ticket");
+  };
 
   if (!movie?.title)
     return (
-      <div className="movie-details  page two-columns d-sidepadding d-toppadding">
+      <div className="movie-details  page two-columns d-sidepadding d-toppadding bg-img-dark">
         <section className="summary loading two-columns__left"></section>
       </div>
     );
@@ -61,33 +61,39 @@ export default function MovieDetails(props) {
 
   return (
     <div
-      className="movie-details page two-columns d-sidepadding d-toppadding"
+      className="movie-details page two-columns d-sidepadding d-toppadding bg-img-dark"
       style={{ backgroundImage: `url(${movie.backdropPath.max})` }}
     >
-      <section className="summary two-columns__left ">
-        <div className="summary__text">
+      <section
+        className="summary two-columns__left "
+        style={{ backgroundImage: `url(${movie.posterPath.max})` }}
+      >
+        {/* <div className="summary__text">
           <h2>{movie.title}</h2>
           <p className="sub-text">{movie.genre}</p>
           <p className="runtime">{movie.runtime}</p>
-        </div>
-        <Button text="get tickets" />
+        </div> */}
+        <Button text="get tickets" onClick={() => handleClick()} />
       </section>
       <section className="content">
-        <div>
-          <h3>storyline</h3>
-          <p>{movie.overview}</p>
+        <div className="overview">
+          <h1>{movie.title}</h1>
+          <p className="genre">{movie.genre} </p>
+          <p className="runtime">{movie.runtime} </p>
+          <h2>Storyline</h2>
+          <p className="synopsis">{movie.overview}</p>
         </div>
         <div className="showtime">
-          <h3>showtimes</h3>
+          <h2>showtimes</h2>
           <div>{showtimes()}</div>
         </div>
-        <div>
-          <h3>cast</h3>
-          <ScrollRow>{cast()}</ScrollRow>
-        </div>
         <div className="videos">
-          <h3>videos</h3>
+          <h2>videos</h2>
           <ScrollRow>{videos()}</ScrollRow>
+        </div>
+        <div>
+          <h2>cast</h2>
+          <ScrollRow>{cast()}</ScrollRow>
         </div>
       </section>
     </div>

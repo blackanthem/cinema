@@ -22,6 +22,7 @@ export default function YouTube(props) {
     });
 
     youTubePlayer.on("ready", () => {
+      // fix async asdfasfd
       setPlayer(youTubePlayer);
       onStateChange("ready");
     });
