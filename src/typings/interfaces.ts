@@ -9,3 +9,13 @@ export interface PostMovie {
   showTimes: Showtime;
   isFeature: boolean;
 }
+
+export interface PostUser {
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+
+export interface CreateUser extends PostUser {
+  code: number;
+}
