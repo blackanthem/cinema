@@ -1,16 +1,12 @@
 .movie-details {
-  background-color: var(--black);
-  background-attachment: fixed;
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-size: cover;
-
   .summary {
-    background-color: var(--black);
-    text-align: center;
-    border: 1px solid #29292e;
-    justify-content: space-around;
-    align-items: center;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    // align-items: flex-end;
+    // justify-content: stretch;
 
     &__text {
       > * {
@@ -38,8 +34,24 @@
       margin-bottom: 80px;
     }
 
-    h3 {
+    .overview {
+      p {
+        line-height: 1.4rem;
+      }
+    }
+
+    .genre,
+    .runtime {
+      font-weight: 300;
+    }
+    .runtime {
+      margin-bottom: 30px;
+    }
+
+    h2 {
       margin-bottom: 8px;
+      text-transform: capitalize;
+      font-size: 1.375rem;
     }
 
     p {
