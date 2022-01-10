@@ -13,3 +13,13 @@ export async function postUser(req: Req, res: Res) {
     handleHttpError(res, error);
   }
 }
+
+export async function loggedIn(req: Req, res: Res) {
+  try {
+    if (req.user) return res.send(req.user);
+
+    throw { status: 401, message: "Error on log in" };
+  } catch (error) {
+    handleHttpError(res, error);
+  }
+}
