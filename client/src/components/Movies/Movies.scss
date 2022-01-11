@@ -1,0 +1,6 @@
+.movies {
+  display: grid;
+  grid-template: auto / repeat(3, auto);
+  justify-content: center;
+  gap: 40px;
+}
