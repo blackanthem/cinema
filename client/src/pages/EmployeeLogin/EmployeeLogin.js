@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/Inputs/TextField";
 import { useLoginMutation } from "../../services/api";
+import { login } from "../../store/authSlice";
 import "./EmployeeLogin.scss";
 
 export default function EmployeeLogin() {
   const [signIn, { error: fetchError, status, data }] = useLoginMutation();
   const [credentials, setCredentials] = useState({ code: "", password: "" });
   const [error, setErrorState] = useState(false);
-  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +28,8 @@ export default function EmployeeLogin() {
     signIn(credentials)
       .unwrap()
       .then((res) => {
-        console.log({ res });
+        dispatch(login());
+        navigate("/auth")
       })
       .catch(() => {
         setErrorState(true);

@@ -10,6 +10,7 @@ import Home from "./pages/Home/Home";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
 import BuyTicket from "./pages/BuyTicket/BuyTicket";
 import EmployeeLogin from "./pages/EmployeeLogin/EmployeeLogin";
+import { RequireAuth } from "./components/Auth/RequireAuth";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,10 +18,11 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="" element={<Home />} />
-            <Route path="movie/:id" element={<MovieDetails />} />
-            <Route path="movie/:id/buy-ticket" element={<BuyTicket />} />
-            <Route path="login" element={<EmployeeLogin />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/movie/:id/buy-ticket" element={<BuyTicket />} />
+            <Route path="/login" element={<EmployeeLogin />} />
+            <Route path="auth/*" element={<RequireAuth />} />
           </Route>
         </Routes>
       </BrowserRouter>
