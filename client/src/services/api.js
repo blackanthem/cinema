@@ -7,7 +7,14 @@ export const api = createApi({
     getMovies: builder.query({
       query: () => "/movies",
     }),
+    login: builder.mutation({
+      query: (credentials) => ({
+        url: "/login",
+        method: "post",
+        body: credentials,
+      }),
+    }),
   }),
 });
-
-export const { useGetMoviesQuery } = api;
+ 
+export const { useGetMoviesQuery, useLoginMutation } = api;

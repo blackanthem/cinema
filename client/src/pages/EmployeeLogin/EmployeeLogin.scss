@@ -10,9 +10,10 @@
     flex-direction: column;
     justify-content: space-between;
 
-    > div{
-      // padding: 48px;
-    }
+   &.error{
+     border-bottom: 3px solid orange;
+     border-left: 3px solid orange;
+   }
 
     h1 {
       font-size: 1.375rem;
