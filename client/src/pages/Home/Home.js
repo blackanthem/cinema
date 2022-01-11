@@ -12,12 +12,16 @@ export default function Home() {
   const comingSoon = () =>
     data
       .filter((movie) => movie.status === "coming soon")
-      .map((movie) => <MovieCard movie={movie} key={movie.id} />);
+      .map((movie) => (
+        <MovieCard movie={movie} key={movie.id} to={`/movie/${movie.id}`} />
+      ));
 
   const nowShowing = () =>
     data
       .filter((movie) => movie.status === "now showing")
-      .map((movie) => <MovieCard movie={movie} key={movie.id} />);
+      .map((movie) => (
+        <MovieCard movie={movie} key={movie.id} to={`/movie/${movie.id}`} />
+      ));
 
   const emptyCards = () =>
     Array(4)
