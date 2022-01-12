@@ -3,11 +3,11 @@ import "react-day-picker/lib/style.css";
 import TextField from "./TextField";
 
 export default function DatePicker(props) {
-  const { label } = props;
+  const { label, onDayChange, selectedDays } = props;
 
   return (
     <TextField label={label}>
-      <DayPickerInput />
+      <DayPickerInput onDayChange={onDayChange} selectedDays={selectedDays} />
     </TextField>
   );
 }

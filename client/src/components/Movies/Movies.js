@@ -11,7 +11,11 @@ export function Movies(props) {
   return (
     <div className="movies">
       {data.map((movie) => (
-        <MovieCard movie={movie} key={movie.id} to="/" />
+        <MovieCard
+          movie={movie}
+          key={movie.id}
+          to={"edit-movie?id=" + movie.id}
+        />
       ))}
     </div>
   );

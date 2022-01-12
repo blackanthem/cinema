@@ -1,0 +1,90 @@
+.showtime-input {
+  display: flex;
+
+  &__textfield {
+    width: 158px;
+  }
+
+  &__days-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+
+    label {
+      margin-bottom: 4px;
+    }
+  }
+
+  &__days {
+    display: -ms-inline-grid;
+    display: -moz-inline-grid;
+    display: inline-grid;
+    grid-template-rows: auto;
+    grid-auto-columns: auto;
+    grid-auto-flow: column;
+    gap: 20px;
+  }
+
+  &__day {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: 2px solid #28282f;
+    background-color: #232329;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.5s;
+    user-select: none;
+
+    &.true {
+      background: var(--body-color);
+      color: var(--black);
+      border-color: var(--body-color);
+    }
+
+    &:hover {
+      border-color: var(--body-color);
+
+      &::before {
+        display: inline-block;
+        // opacity: 1;
+      }
+    }
+
+    &::before {
+      content: attr(data-day);
+      font-size: 11px;
+      position: absolute;
+      top: 0;
+      transform: translateY(-160%);
+      text-transform: capitalize;
+      opacity: 0;
+      display: none;
+      transition: opacity 0.5s 4s;
+    }
+  }
+
+  &__delete {
+    align-self: center;
+    color: #9e0900;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 30px;
+    transition: all 0.2s;
+
+    &:hover {
+      border-color: #9e0900;
+      // color: var(--black);
+    }
+  }
+}

@@ -11,12 +11,13 @@
   input,
   select {
     font-size: 1rem;
-    padding: 11px 10px;
+    padding: 10px 15px;
+    height: 48px;
     background-color: #232329;
     color: inherit;
     border: none;
     border-radius: 8px;
-    width: 214.4px;
+    width: 100%;
     appearance: none;
 
     &:focus {
@@ -36,6 +37,14 @@
 
   select {
     cursor: pointer;
+  }
+
+  &__hint {
+    font-weight: 300;
+    font-size: 0.75rem;
+    margin-left: var(--border-radius);
+    margin-top: 3px;
+    opacity: .8;
   }
 
   // react-day-picker

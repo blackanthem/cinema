@@ -1,0 +1,56 @@
+.edit-movie {
+  &__overview {
+    max-width: 65ch;
+    margin-bottom: 50px;
+  }
+
+  form {
+    > div {
+      margin-bottom: 40px;
+    }
+
+    .four-squares {
+      display: grid;
+      grid-template: auto auto / repeat(2, 224.4px);
+      row-gap: 50px;
+      column-gap: 80px;
+      border-bottom: 2px solid #2B2B31;
+      border-top: 2px solid #2B2B31;
+      padding: 40px 0;
+    }
+
+    #showtime {
+      padding: 40px 0;
+      border-bottom: 2px solid #2B2B31;
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      &__inputs {
+        > div {
+          margin-bottom: 40px;
+        }
+      }
+
+      &__add {
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-transform: capitalize;
+        text-decoration: underline;
+
+        cursor: pointer;
+      }
+    }
+
+    .checkbox {
+      // background: red;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin-right: 10px;
+      }
+    }
+  }
+}
