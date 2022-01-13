@@ -35,12 +35,11 @@ export function Showtime(props) {
       <div className="showtime-input__textfield">
         <TextField
           label="time"
-          pattern="^\d{1,2}(:\d{2})? (am|pm)$"
+          pattern="^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm)$"
           invalidMsg="j"
-          hint="0 am | 00:00 am"
           value={time}
           onChange={(e) => handleInputChange(e)}
-          placeholder="0:00 am"
+          placeholder="00:00 am or pm"
         />
       </div>
 

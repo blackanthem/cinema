@@ -6,6 +6,8 @@
   label {
     margin-bottom: 4px;
     text-transform: capitalize;
+    font-size: 0.875rem;
+    color: #a6a6ba;
   }
 
   input,
@@ -15,7 +17,7 @@
     height: 48px;
     background-color: #232329;
     color: inherit;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 8px;
     width: 100%;
     appearance: none;
@@ -44,7 +46,16 @@
     font-size: 0.75rem;
     margin-left: var(--border-radius);
     margin-top: 3px;
-    opacity: .8;
+    opacity: 0.8;
+  }
+
+  &.error {
+    input,
+    select {
+      $error-color: #402626;
+      border-color: $error-color;
+      background-color: $error-color;
+    }
   }
 
   // react-day-picker
