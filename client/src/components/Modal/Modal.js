@@ -27,6 +27,7 @@ export function Modal(props) {
         <section>
           <p className="title">Current Movies</p>
           <div className="modal__items">
+            {movies?.length ? null : <p>No Movies</p>}
             {movies?.map((movie) => (
               <Item
                 item={movie}
@@ -40,6 +41,7 @@ export function Modal(props) {
         <section>
           <p className="title">Found Movies</p>
           <div className="modal__items">
+            {searchResults?.length ? null : <p>No Movies</p>}
             {searchResults?.map((movie) => (
               <Item
                 item={movie}
