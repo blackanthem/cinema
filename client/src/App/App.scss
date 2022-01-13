@@ -84,7 +84,7 @@ main {
     padding: 13px;
     top: 100px;
     border-radius: var(--border-radius);
-    border: 1px solid #29292e;
+    border: 2px solid #29292e;
 
     &.loading {
       background-color: #242428;
@@ -103,4 +103,34 @@ main {
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/****************************/
+// toastify container
+
+.Toastify__toast {
+  background: #232329 !important;
+  border-radius: var(--border-radius) !important;
+  color: var(--body-color) !important;
+  border-bottom: 2px solid;
+
+  button svg {
+    color: var(--body-color);
+  }
+
+  &--success {
+    border-color: green;
+  }
+
+  &--error {
+    border-color: #e74c3c;
+  }
+
+  &--warning {
+    border-color: #F1C40F;
+  }
+
+  &--info {
+    border-color: #3498DB;
+  }
 }

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
   loggedIn: false,
@@ -12,6 +13,7 @@ export const authSlice = createSlice({
       state.loggedIn = true;
     },
     logout(state) {
+      toast.error("Session expired", { toastId: "login" });
       state.loggedIn = false;
     },
   },

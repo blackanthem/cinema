@@ -7,6 +7,7 @@ import { useLoginMutation } from "../../services/api";
 import { login } from "../../store/authSlice";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
 import "./EmployeeLogin.scss";
+import { toast } from "react-toastify";
 
 export default function EmployeeLogin() {
   const [signIn, { error: fetchError, status, data }] = useLoginMutation();
@@ -15,9 +16,9 @@ export default function EmployeeLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() =>{
-    setDocumentTitle("Login")
-  },[])
+  useEffect(() => {
+    setDocumentTitle("Login");
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,12 +33,13 @@ export default function EmployeeLogin() {
   const handleClick = () => {
     signIn(credentials)
       .unwrap()
-      .then((res) => {
+      .then(({ firstName }) => {
+        toast.success(`Welcome ${firstName}`, { toastId: "login" });
         dispatch(login());
         navigate("/auth/movies");
       })
       .catch(() => {
-        setErrorState(true);
+        toast.update("login", { type: "error", render: "Invalid Credentials" });
       });
   };
 

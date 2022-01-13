@@ -17,6 +17,7 @@ import {
   updateDataFormat,
 } from "./editMovieUtils";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
+import { toast } from "react-toastify";
 
 const initialDetailsState = {
   status: "",
@@ -79,7 +80,7 @@ export function EditMovie(props) {
     handleInputChange({ target: { name, value: checked } });
   };
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -88,18 +89,30 @@ export function EditMovie(props) {
       showtimes: postShowtimeFormat(details.showtimes),
     };
 
-    let request;
+    const toastId = "edit";
+    const toastSuccess = { isLoading: false, type: "success" };
 
-    if (mode == "update") request = updateMovie(updateDataFormat(data));
-    else request = postMovie(data);
+    try {
+      if (mode == "update") {
+        toast.loading("Updating movie", { toastId });
 
-    request
-      .then((res) => {
-        navigate("../movies");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        await updateMovie(updateDataFormat(data));
+        toast.update(toastId, { render: "Movie updated", ...toastSuccess });
+      } else {
+        toast.loading("Adding movie to catalogue", { toastId });
+
+        await postMovie(data);
+        toast.update(toastId, { render: "Movie added", ...toastSuccess });
+      }
+
+      navigate("../movies");
+      setTimeout(() => {
+        toast.dismiss(toastId);
+      }, 5000);
+    } catch (error) {
+      toast.error("Please try again", { toastId });
+      console.error(error);
+    }
   };
 
   const handleShowtimesChange = ({ id, time, selectedDays }) => {
