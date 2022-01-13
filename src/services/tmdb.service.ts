@@ -1,6 +1,8 @@
 import axios from "../config/axios";
 import { MovieDetails, SearchMovie } from "../typings/tmdb.types";
 
+const imageBaseUrl = "https://image.tmdb.org/t/p";
+
 export async function searchMovies(query: string) {
   try {
     const path = `/search/movie?language=en-US&query=${query}&page=1&include_adult=true`;
@@ -17,7 +19,7 @@ export async function searchMovies(query: string) {
         title,
         overview,
         releaseDate: release_date,
-        posterPath: poster_path,
+        posterPath: `${imageBaseUrl}/w154/${poster_path}`,
       };
     });
   } catch (error) {
@@ -28,7 +30,6 @@ export async function searchMovies(query: string) {
 export async function movieDetails(id: number) {
   try {
     const path = `/movie/${id}?append_to_response=credits,videos`;
-    const imageBaseUrl = "https://image.tmdb.org/t/p";
     const response = await axios.get(path);
 
     const movieDetails = <MovieDetails>response.data;
@@ -48,7 +49,8 @@ export async function movieDetails(id: number) {
     };
 
     const posterPath = {
-      min: `${imageBaseUrl}/w342${movieDetails.poster_path}`,
+      min: `${imageBaseUrl}/w154${movieDetails.poster_path}`,
+      med: `${imageBaseUrl}/w342${movieDetails.poster_path}`,
       max: `${imageBaseUrl}/w500${movieDetails.poster_path}`,
     };
 
