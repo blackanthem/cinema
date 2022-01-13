@@ -1,0 +1,40 @@
+.nav {
+  .text-field {
+    margin-bottom: 40px;
+  }
+
+  &__links {
+    a {
+      display: block;
+      text-transform: capitalize;
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 8px 8px 32px;
+      margin-bottom: 4px;
+      border-radius: var(--border-radius);
+      color: #afafbb;
+      transition: background-color 0.5s;
+    }
+
+    a.title {
+      color: #a6a6b8;
+      padding-left: 8px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+
+
+    &.def #def {
+      background-color: #212127;
+    }
+
+    &.now #now {
+      background-color: #212127;
+    }
+
+    &.soon #soon {
+      background-color: #212127;
+    }
+  }
+}
