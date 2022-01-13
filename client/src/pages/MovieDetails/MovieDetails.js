@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import ScrollRow from "../../components/ScrollRow/ScrollRow";
 import CastCard from "../../components/CastCard/CastCard";
 import YouTube from "../../components/YouTube/YouTube";
+import { setDocumentTitle } from "../../utils/setDocumentTitle";
 
 export default function MovieDetails(props) {
   const {} = props;
@@ -19,6 +20,7 @@ export default function MovieDetails(props) {
     const found = data.find((movie) => movie.id === +movieId);
     // if not found display 404
     setMovie(found);
+    setDocumentTitle(found.title);
   }, [isSuccess]);
 
   const handleClick = () => {

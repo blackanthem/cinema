@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import TextField from "../../components/Inputs/TextField";
 import DatePicker from "../../components/Inputs/DatePicker";
 import SelectInput from "../../components/Inputs/SelectInput";
+import { setDocumentTitle } from "../../utils/setDocumentTitle";
 
 export default function BuyTicket(props) {
   const { id: movieId } = useParams();
@@ -17,6 +18,7 @@ export default function BuyTicket(props) {
     const found = data.find((movie) => movie.id === +movieId);
     //if not found display 404
     setMovie(found);
+    setDocumentTitle("Buy tickets - " + found.title);
   }, [isSuccess]);
 
   if (!movie?.title)

@@ -16,6 +16,7 @@ import {
   postShowtimeFormat,
   updateDataFormat,
 } from "./editMovieUtils";
+import { setDocumentTitle } from "../../utils/setDocumentTitle";
 
 const initialDetailsState = {
   status: "",
@@ -43,11 +44,15 @@ export function EditMovie(props) {
   }, [location?.state]);
 
   useEffect(() => {
-    if (movie)
-      if (mode == "update") {
-        const formatted = detailsFormat(movie);
-        setDetails(formatted);
-      }
+    if (!movie) return;
+
+    if (mode == "update") {
+      const formatted = detailsFormat(movie);
+      setDetails(formatted);
+      setDocumentTitle(`Update ${movie.title} Details`);
+    } else {
+      setDocumentTitle(`Add ${movie.title} to Catalogue`);
+    }
   }, [movie]);
 
   const newShowtime = () => {

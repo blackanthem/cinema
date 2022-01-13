@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import TextField from "../../components/Inputs/TextField";
 import { useLoginMutation } from "../../services/api";
 import { login } from "../../store/authSlice";
+import { setDocumentTitle } from "../../utils/setDocumentTitle";
 import "./EmployeeLogin.scss";
 
 export default function EmployeeLogin() {
@@ -13,6 +14,10 @@ export default function EmployeeLogin() {
   const [error, setErrorState] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() =>{
+    setDocumentTitle("Login")
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
