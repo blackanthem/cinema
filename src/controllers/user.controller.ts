@@ -16,9 +16,10 @@ export async function postUser(req: Req, res: Res) {
 
 export async function loggedIn(req: Req, res: Res) {
   try {
-    if (req.user) return res.send(req.user);
+    if (!req.user) throw { status: 401, message: "Error on log in" };
 
-    throw { status: 401, message: "Error on log in" };
+    const { id, firstName, code } = <any>req.user;
+    return res.send({ id, firstName, code });
   } catch (error) {
     handleHttpError(res, error);
   }
