@@ -6,7 +6,7 @@
 
   form {
     > div {
-      margin-bottom: 40px;
+      padding: 60px 0;
     }
 
     .four-squares {
@@ -14,14 +14,12 @@
       grid-template: auto auto / repeat(2, 224.4px);
       row-gap: 50px;
       column-gap: 80px;
-      border-bottom: 2px solid #2B2B31;
-      border-top: 2px solid #2B2B31;
-      padding: 40px 0;
+      border-bottom: 2px solid #2b2b31;
+      border-top: 2px solid #2b2b31;
     }
 
     #showtime {
-      padding: 40px 0;
-      border-bottom: 2px solid #2B2B31;
+      border-bottom: 2px solid #2b2b31;
 
       p {
         margin-bottom: 20px;
@@ -44,7 +42,6 @@
     }
 
     .checkbox {
-      // background: red;
       display: flex;
       align-items: center;
 

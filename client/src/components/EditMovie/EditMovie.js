@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   usePostMovieMutation,
   useUpdateMovieMutation,
@@ -33,6 +33,7 @@ export function EditMovie(props) {
   const location = useLocation();
   const [postMovie, {}] = usePostMovieMutation();
   const [updateMovie, {}] = useUpdateMovieMutation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!location?.state) return;
@@ -56,7 +57,7 @@ export function EditMovie(props) {
     setDetails({ ...details, showtimes: showtimesCopy });
   };
 
-  if (!movie?.title) return <div>dfpoop</div>;
+  if (!movie?.title) return null;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -82,8 +83,6 @@ export function EditMovie(props) {
       showtimes: postShowtimeFormat(details.showtimes),
     };
 
-    console.log(data);
-
     let request;
 
     if (mode == "update") request = updateMovie(updateDataFormat(data));
@@ -91,7 +90,7 @@ export function EditMovie(props) {
 
     request
       .then((res) => {
-        console.log(res);
+        navigate("/auth");
       })
       .catch((error) => {
         console.error(error);
