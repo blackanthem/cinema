@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useGetMoviesQuery } from "../../services/api";
+import { useLocation } from "react-router-dom";
+import { usePostMovieMutation } from "../../services/api";
 import Button from "../Button/Button";
 import DatePicker from "../Inputs/DatePicker";
 import SelectInput from "../Inputs/SelectInput";
@@ -12,8 +12,6 @@ import { postShowtimeFormat } from "./editMovieUtils";
 
 export function EditMovie(props) {
   const { mode } = props;
-  const [searchParams] = useSearchParams();
-  const { data, isSuccess } = useGetMoviesQuery();
   const [movie, setMovie] = useState();
   const [details, setDetails] = useState({
     status: "",
@@ -23,15 +21,12 @@ export function EditMovie(props) {
     isFeature: false,
     showtimes: [],
   });
+  const location = useLocation();
+  const [postMovie, {}] = usePostMovieMutation();
 
   useEffect(() => {
-    if (!isSuccess) return;
-
-    const id = searchParams.get("id");
-    const found = data.find((movie) => movie.id === +id);
-
-    setMovie(found);
-  }, [isSuccess]);
+    if (location?.state) setMovie(location.state);
+  }, [location?.state]);
 
   useEffect(() => {
     if (details.showtimes.length === 0) newShowtime();
@@ -70,7 +65,13 @@ export function EditMovie(props) {
       showtimes: postShowtimeFormat(details.showtimes),
     };
 
-    console.log(data);
+    postMovie(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleShowtimesChange = ({ id, time, selectedDays }) => {
