@@ -34,6 +34,7 @@ export function Layout(props) {
 
   const classNames = () => {
     let classList = "nav__links";
+    if (location.pathname !== baseUrl) return classList;
     if (!activeNav) return (classList += " def");
     if (activeNav.includes("coming%20soon")) return (classList += " soon");
     if (activeNav.includes("now%20showing")) return (classList += " now");
