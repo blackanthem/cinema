@@ -156,6 +156,7 @@ export function EditMovie(props) {
 
   return (
     <div className="edit-movie">
+      <h1> {movie.title} </h1>
       <p className="edit-movie__overview">{movie.overview}</p>
 
       <form>
