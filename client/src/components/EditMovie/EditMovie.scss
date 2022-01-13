@@ -16,6 +16,10 @@
       column-gap: 80px;
       border-bottom: 2px solid #2b2b31;
       border-top: 2px solid #2b2b31;
+
+      select{
+        text-transform: capitalize;
+      }
     }
 
     #showtime {

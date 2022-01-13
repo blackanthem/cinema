@@ -138,7 +138,7 @@ export function EditMovie(props) {
   const statusOptions = [
     { value: "now showing" },
     { value: "coming soon" },
-    { value: "none", text: "tbd" },
+    { value: "none" },
   ];
 
   return (
