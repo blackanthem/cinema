@@ -8,7 +8,7 @@ export default function SelectInput(props) {
       <select name={name || label} onChange={onChange} value={value}>
         <option value="" disabled hidden></option>
         {options.map(({ text, value }) => (
-          <option value={value} key={value.charAt(0)}>
+          <option value={value} key={value.charAt(0) + Math.random()}>
             {text || value}
           </option>
         ))}
