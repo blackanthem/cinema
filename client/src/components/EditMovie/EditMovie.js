@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { usePostMovieMutation } from "../../services/api";
+import {
+  usePostMovieMutation,
+  useUpdateMovieMutation,
+} from "../../services/api";
 import Button from "../Button/Button";
 import DatePicker from "../Inputs/DatePicker";
 import SelectInput from "../Inputs/SelectInput";
@@ -8,29 +11,43 @@ import TextField from "../Inputs/TextField";
 import { Showtime } from "../Showtimes/Showtimes";
 import "./EditMovie.scss";
 import { getKey } from "../../utils/getKey";
-import { postShowtimeFormat } from "./editMovieUtils";
+import {
+  detailsFormat,
+  postShowtimeFormat,
+  updateDataFormat,
+} from "./editMovieUtils";
+
+const initialDetailsState = {
+  status: "",
+  ticketPrice: 0,
+  startShowingDate: "",
+  stopShowingDate: "",
+  isFeature: false,
+  showtimes: [],
+};
 
 export function EditMovie(props) {
   const { mode } = props;
   const [movie, setMovie] = useState();
-  const [details, setDetails] = useState({
-    status: "",
-    ticketPrice: 0,
-    startShowingDate: "",
-    stopShowingDate: "",
-    isFeature: false,
-    showtimes: [],
-  });
+  const [details, setDetails] = useState();
   const location = useLocation();
   const [postMovie, {}] = usePostMovieMutation();
+  const [updateMovie, {}] = useUpdateMovieMutation();
 
   useEffect(() => {
-    if (location?.state) setMovie(location.state);
+    if (!location?.state) return;
+
+    setMovie(location.state);
+    setDetails(initialDetailsState);
   }, [location?.state]);
 
   useEffect(() => {
-    if (details.showtimes.length === 0) newShowtime();
-  }, []);
+    if (movie)
+      if (mode == "update") {
+        const formatted = detailsFormat(movie);
+        setDetails(formatted);
+      }
+  }, [movie]);
 
   const newShowtime = () => {
     const showtime = { id: getKey(), time: "", selectedDays: [] };
@@ -65,7 +82,14 @@ export function EditMovie(props) {
       showtimes: postShowtimeFormat(details.showtimes),
     };
 
-    postMovie(data)
+    console.log(data);
+
+    let request;
+
+    if (mode == "update") request = updateMovie(updateDataFormat(data));
+    else request = postMovie(data);
+
+    request
       .then((res) => {
         console.log(res);
       })
@@ -110,7 +134,7 @@ export function EditMovie(props) {
   const statusOptions = [
     { value: "now showing" },
     { value: "coming soon" },
-    { value: "TBD" },
+    { value: "none", text: "tbd" },
   ];
 
   return (
@@ -138,13 +162,13 @@ export function EditMovie(props) {
             onDayChange={(day) =>
               handleDayPickerChange(day, "startShowingDate")
             }
-            selectedDays={details.startShowingDate}
+            selectedDay={details.startShowingDate}
           />
 
           <DatePicker
             label="stop showing date"
             onDayChange={(day) => handleDayPickerChange(day, "stopShowingDate")}
-            selectedDays={details.stopShowingDate}
+            selectedDay={details.stopShowingDate}
           />
         </div>
 
@@ -162,14 +186,18 @@ export function EditMovie(props) {
             type="checkbox"
             name="isFeature"
             id="isFeature"
-            onClick={(e) => handleCheckBoxClick(e)}
+            onChange={(e) => handleCheckBoxClick(e)}
+            checked={details.isFeature}
           />
           <label htmlFor="isFeature" value={details.isFeature}>
             Feature Movie
           </label>
         </div>
         <div>
-          <Button text="Add movie" onClick={(e) => handleButtonClick(e)} />
+          <Button
+            text={mode === "update" ? "update movie" : "add movie"}
+            onClick={(e) => handleButtonClick(e)}
+          />
         </div>
       </form>
     </div>

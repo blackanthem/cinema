@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "/v1" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/v1", credentials: "include" }),
   endpoints: (builder) => ({
     getMovies: builder.query({
       query: () => "/movies",
@@ -24,6 +24,12 @@ export const api = createApi({
         body,
       }),
     }),
+    updateMovie: builder.mutation({
+      query: ({ movieId, queryString }) => ({
+        url: `/auth/movies/${movieId}?${queryString}`,
+        method: "put",
+      }),
+    }),
   }),
 });
 
@@ -32,4 +38,5 @@ export const {
   useLoginMutation,
   useSearchMoviesQuery,
   usePostMovieMutation,
+  useUpdateMovieMutation,
 } = api;

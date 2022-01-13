@@ -27,7 +27,6 @@ passport.serializeUser((user: any, done) => {
 });
 
 passport.deserializeUser(async (id: any, done) => {
-  console.log("sdfasd")
   try {
     const user = await userModel.findByPk(id);
 

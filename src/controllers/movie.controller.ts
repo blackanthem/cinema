@@ -29,10 +29,27 @@ export async function postMovie(req: Req, res: Res) {
   }
 }
 
+export async function updateMovie(req: Req, res: Res) {
+  try {
+    // @ts-expect-error
+    req.query.showtimes = JSON.parse(req?.query?.showtimes);
+  } catch (error) {}
+
+  try {
+    console.log(req.query.showtimes);
+    const data = await movieSchema.updateMovie({ ...req.query, ...req.params });
+    const result = await movieService.updateMovie(data);
+
+    res.send(result);
+  } catch (error) {
+    handleHttpError(res, error);
+  }
+}
+
 export async function getMovies(req: Req, res: Res) {
   try {
     const movies = await movieService.getAllMovies();
-    res.send(movies)
+    res.send(movies);
   } catch (error) {
     handleHttpError(res, error);
   }

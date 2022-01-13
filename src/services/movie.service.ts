@@ -13,6 +13,18 @@ export async function saveMovie(params: PostMovie) {
   }
 }
 
+export async function updateMovie({ id, ...values }: PostMovie) {
+  try {
+    const updatedMovie = await movieModel.update(values, {
+      where: { id },
+    });
+
+    return updatedMovie;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getAllMovies() {
   try {
     return await movieModel.findAll();
