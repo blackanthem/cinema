@@ -29,7 +29,7 @@ export default function EmployeeLogin() {
       .unwrap()
       .then((res) => {
         dispatch(login());
-        navigate("/auth")
+        navigate("/auth/movies");
       })
       .catch(() => {
         setErrorState(true);
@@ -62,7 +62,6 @@ export default function EmployeeLogin() {
 
         <Button text="Login" onClick={() => handleClick()} />
       </section>
-      {status}
     </div>
   );
 }

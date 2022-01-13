@@ -36,7 +36,6 @@ export async function updateMovie(req: Req, res: Res) {
   } catch (error) {}
 
   try {
-    console.log(req.query.showtimes);
     const data = await movieSchema.updateMovie({ ...req.query, ...req.params });
     const result = await movieService.updateMovie(data);
 

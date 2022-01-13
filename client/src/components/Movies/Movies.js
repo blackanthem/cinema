@@ -14,7 +14,7 @@ export function Movies(props) {
         <MovieCard
           movie={movie}
           key={movie.id}
-          to={"edit-movie"}
+          to={"../edit-movie"}
           state={movie}
         />
       ))}

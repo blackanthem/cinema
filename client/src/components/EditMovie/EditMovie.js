@@ -90,7 +90,7 @@ export function EditMovie(props) {
 
     request
       .then((res) => {
-        navigate("/auth");
+        navigate("../movies");
       })
       .catch((error) => {
         console.error(error);
