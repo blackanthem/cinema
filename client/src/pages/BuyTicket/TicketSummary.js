@@ -2,7 +2,7 @@ import Button from "../../components/Button/Button";
 
 export function TicketSummary(props) {
   const { title, ticket, date } = props;
-  const { time, numOfTickets, email, fullName } = ticket;
+  const { time, numOfTickets, email, fullName, ticketPrice } = ticket;
 
   return (
     <section className=" two-columns__left ticket-summary">
@@ -12,6 +12,7 @@ export function TicketSummary(props) {
         <h2 className="ticket-summary__title">{title}</h2>
         <TicketSummaryRow label="Date" value={date || "Select Date"} />
         <TicketSummaryRow label="time" value={time || "Select Time"} />
+        <TicketSummaryRow label="Tickets" value={numOfTickets} />
         <TicketSummaryRow label="screen" value="2A" />
         <hr />
         <TicketSummaryRow label="name" value={fullName || "enter name"} />
@@ -20,8 +21,13 @@ export function TicketSummary(props) {
           value={email || "Enter Email"}
           modifier="unset"
         />
-        <TicketSummaryRow label="Tickets" value={numOfTickets} />
         <hr />
+        <div className="ticket-summary__price">
+          <span className="ticket-summary__price__label color-grey">Total</span>
+          <div className="ticket-summary__price__total">
+            GHS {!isNaN(numOfTickets) ? numOfTickets * ticketPrice : 0}
+          </div>
+        </div>
       </div>
       <Button text="pay now" />
     </section>

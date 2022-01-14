@@ -5,11 +5,7 @@ import "./BuyTicket.scss";
 import TextField from "../../components/Inputs/TextField";
 import SelectInput from "../../components/Inputs/SelectInput";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
-import {
-  dateString,
-  getWeekday,
-  getDisabledDays,
-} from "./buyTicketUtils";
+import { dateString, getWeekday, getDisabledDays } from "./buyTicketUtils";
 import DayPicker from "react-day-picker";
 import { TicketSummary } from "./TicketSummary";
 
@@ -23,14 +19,16 @@ export default function BuyTicket(props) {
     numOfTickets: 1,
     email: "",
     fullName: "",
+    ticketPrice: null,
   });
 
   useEffect(() => {
     if (!isSuccess) return;
     const found = data.find((movie) => movie.id === +movieId);
     //if not found display 404
-    setMovie(found);
     setDocumentTitle("Buy Tickets - " + found.title);
+    setMovie(found);
+    setTicket({ ...ticket, ticketPrice: found.ticketPrice });
   }, [isSuccess]);
 
   if (!movie?.title)
@@ -69,7 +67,11 @@ export default function BuyTicket(props) {
       />
 
       <section className="ticket-form">
-        <h1> {"Watch " + movie.title} </h1>
+        <aside className="ticket-form__overview">
+          <h1> {"Watch " + movie.title} </h1>
+          <p className="genre">{movie.genre} </p>
+          <p className="runtime">{movie.runtime} </p>
+        </aside>
         <div className="ticket-form__section">
           <h3>Ticket Details</h3>
           <DayPicker
