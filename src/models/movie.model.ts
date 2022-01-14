@@ -50,26 +50,54 @@ interface MovieInstance
   extends Model<MovieAttributes, MovieCreationAttributes>,
     MovieAttributes {}
 
-const movieModel = sequelize.define<MovieInstance>("Movie", {
-  id: { type: DataTypes.INTEGER, primaryKey: true },
-  title: { type: DataTypes.STRING, allowNull: false },
-  genre: { type: DataTypes.STRING },
-  overview: { type: DataTypes.TEXT },
-  cast: { type: DataTypes.JSON, allowNull: false },
-  tagline: { type: DataTypes.STRING },
-  backdropPath: { type: DataTypes.JSON, allowNull: false },
-  posterPath: { type: DataTypes.JSON, allowNull: false },
-  releaseDate: { type: DataTypes.DATEONLY, allowNull: false },
-  runtime: { type: DataTypes.STRING, allowNull: false },
-  status: { type: DataTypes.STRING, allowNull: false },
-  startShowingDate: { type: DataTypes.DATEONLY, allowNull: false },
-  stopShowingDate: { type: DataTypes.DATEONLY, allowNull: false },
-  ticketPrice: { type: DataTypes.STRING, allowNull: false },
-  showTimes: { type: DataTypes.JSON, allowNull: false },
-  isFeature: { type: DataTypes.BOOLEAN, defaultValue: false },
-  videos: { type: DataTypes.JSON },
-});
+const movieModel = sequelize.define<MovieInstance>(
+  "Movie",
+  {
+    id: { type: DataTypes.INTEGER, primaryKey: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    genre: { type: DataTypes.STRING },
+    overview: { type: DataTypes.TEXT },
+    cast: { type: DataTypes.JSON, allowNull: false },
+    tagline: { type: DataTypes.STRING },
+    backdropPath: { type: DataTypes.JSON, allowNull: false },
+    posterPath: { type: DataTypes.JSON, allowNull: false },
+    releaseDate: { type: DataTypes.DATEONLY, allowNull: false },
+    runtime: { type: DataTypes.STRING, allowNull: false },
+    status: { type: DataTypes.STRING, allowNull: false },
+    startShowingDate: { type: DataTypes.DATEONLY, allowNull: false },
+    stopShowingDate: { type: DataTypes.DATEONLY, allowNull: false },
+    ticketPrice: { type: DataTypes.STRING, allowNull: false },
+    showTimes: { type: DataTypes.JSON, allowNull: false },
+    isFeature: { type: DataTypes.BOOLEAN, defaultValue: false },
+    videos: { type: DataTypes.JSON },
+  },
+  {
+    hooks: {
+      beforeUpdate: async (movie, options) => {
+        const { transaction } = options;
 
+        //@ts-expect-error
+        if (!movie.isFeature) return;
+
+        await movieModel.update(
+          { isFeature: false },
+          { where: { isFeature: true }, transaction }
+        );
+      },
+      beforeCreate: async (movie, options) => {
+        const { transaction } = options;
+
+        //@ts-expect-error
+        if (!movie.isFeature) return;
+
+        await movieModel.update(
+          { isFeature: false },
+          { where: { isFeature: true }, transaction }
+        );
+      },
+    },
+  }
+);
 
 export default movieModel;
 

@@ -27,6 +27,7 @@ export async function updateMovie({ id, showTimes, ...values }: PostMovie) {
 
     const updatedMovie = await movieModel.update(values, {
       where: { id },
+      individualHooks: true,
     });
 
     return updatedMovie;
