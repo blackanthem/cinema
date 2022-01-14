@@ -3,9 +3,12 @@ import { useGetMoviesQuery } from "../../services/api";
 import ScrollRow from "../../components/ScrollRow/ScrollRow";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import "./Home.scss";
+import { setDocumentTitle } from "../../utils/setDocumentTitle";
 
 export default function Home() {
   const { data, isSuccess } = useGetMoviesQuery();
+
+  setDocumentTitle("Cinema App by Steven Yirenkyi")
 
   const featureMovie = () => data.find((movie) => movie.isFeature);
 
