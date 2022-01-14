@@ -2,23 +2,35 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetMoviesQuery } from "../../services/api";
 import "./BuyTicket.scss";
-import Button from "../../components/Button/Button";
 import TextField from "../../components/Inputs/TextField";
-import DatePicker from "../../components/Inputs/DatePicker";
 import SelectInput from "../../components/Inputs/SelectInput";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
+import {
+  dateString,
+  getWeekday,
+  getDisabledDays,
+} from "./buyTicketUtils";
+import DayPicker from "react-day-picker";
+import { TicketSummary } from "./TicketSummary";
 
 export default function BuyTicket(props) {
   const { id: movieId } = useParams();
   const { data, isSuccess } = useGetMoviesQuery();
   const [movie, setMovie] = useState({});
+  const [watchDate, setWatchDate] = useState();
+  const [ticket, setTicket] = useState({
+    time: "",
+    numOfTickets: 1,
+    email: "",
+    fullName: "",
+  });
 
   useEffect(() => {
     if (!isSuccess) return;
     const found = data.find((movie) => movie.id === +movieId);
     //if not found display 404
     setMovie(found);
-    setDocumentTitle("Buy tickets - " + found.title);
+    setDocumentTitle("Buy Tickets - " + found.title);
   }, [isSuccess]);
 
   if (!movie?.title)
@@ -28,72 +40,76 @@ export default function BuyTicket(props) {
       </div>
     );
 
+  const handleDayPickerClick = (day, { selected, disabled }) => {
+    if (disabled) return;
+    if (selected) return setWatchDate(undefined);
+
+    setWatchDate(day);
+    setTicket({ ...ticket, time: "" });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log({ name, value });
+
+    setTicket({ ...ticket, [name]: value });
+  };
+
+  const watchTimes = movie.showTimes[getWeekday(watchDate)];
+
   return (
     <div
       className="buy-ticket page two-columns d-sidepadding d-toppadding bg-img-dark"
       style={{ backgroundImage: `url(${movie.backdropPath.max})` }}
     >
-      <section className=" two-columns__left ticket-summary">
-        <div>
-          <p className="color-grey ticket-summary__header">booking summary</p>
+      <TicketSummary
+        title={movie.title}
+        ticket={ticket}
+        date={dateString(watchDate)}
+      />
 
-          <h2 className="ticket-summary__title">{movie.title}</h2>
-          <TicketSummaryRow label="Date" value="Monday 22nd Febuary, 2021" />
-          <TicketSummaryRow label="time" value="10 AM - 3 PM" />
-          <TicketSummaryRow label="screen" value="2A" />
-          <hr />
-          <TicketSummaryRow label="name" value="daniel zor" />
-          <TicketSummaryRow label="email" value="danielzor@gmail.com" />
-          <TicketSummaryRow label="Tickets" value="2" />
-          <hr />
-        </div>
-        <Button text="pay now" />
-      </section>
       <section className="ticket-form">
+        <h1> {"Watch " + movie.title} </h1>
         <div className="ticket-form__section">
           <h3>Ticket Details</h3>
-          <div className="ticket-form__row">
-            <DatePicker label="Date" />
-            <SelectInput label="time" />
+          <DayPicker
+            selectedDays={watchDate}
+            onDayClick={handleDayPickerClick}
+            disabledDays={getDisabledDays(movie)}
+          />
+          <div>
+            <SelectInput
+              label="time"
+              options={watchTimes}
+              value={ticket.time}
+              onChange={(e) => handleInputChange(e)}
+            />
+            <TextField
+              label="Number of tickets"
+              name="numOfTickets"
+              type="number"
+              min="1"
+              value={ticket.numOfTickets}
+              onChange={(e) => handleInputChange(e)}
+            />
           </div>
-          <TextField label="Number of tickets" type="number" min="1" />
         </div>
         <div className="ticket-form__section">
           <h3>Personal Details</h3>
-          <div className="ticket-form__row">
-            <TextField label="full name" />
-            <TextField label="email" type="email" />
-          </div>
+          <TextField
+            label="full name"
+            name="fullName"
+            value={ticket.fullName}
+            onChange={(e) => handleInputChange(e)}
+          />
+          <TextField
+            label="email"
+            type="email"
+            value={ticket.email}
+            onChange={(e) => handleInputChange(e)}
+          />
         </div>
       </section>
     </div>
   );
 }
-
-const HorizontalLine = () => (
-  <svg
-    width="300"
-    height="1"
-    viewBox="0 0 300 1"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="hr"
-  >
-    <line
-      x1="0.5"
-      y1="0.5"
-      x2="299.5"
-      y2="0.5"
-      // stroke="#2B2B30"
-      strokeLinecap="round"
-      strokeDasharray="10 10"
-    />
-  </svg>
-);
-
-const TicketSummaryRow = ({ label, value }) => (
-  <div className="ticket-summary__row">
-    <span className="ticket-summary__row__label color-grey">{label}</span>
-    <span className="ticket-summary__row__value">{value}</span>
-  </div>
-);

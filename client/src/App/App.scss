@@ -106,7 +106,7 @@ main {
 }
 
 /****************************/
-// toastify container
+// toastify
 
 .Toastify__toast {
   background: #232329 !important;
@@ -127,10 +127,24 @@ main {
   }
 
   &--warning {
-    border-color: #F1C40F;
+    border-color: #f1c40f;
   }
 
   &--info {
-    border-color: #3498DB;
+    border-color: #3498db;
   }
+}
+
+/****************************/
+// react-day-picker
+
+.DayPicker:not(.DayPicker--interactionDisabled)
+  .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+  background-color: var(--body-color);
+  color: var(--black);
+}
+
+.DayPicker-Day.DayPicker-Day--disabled {
+  color: #8b9898;
+  opacity: 0.7;
 }
