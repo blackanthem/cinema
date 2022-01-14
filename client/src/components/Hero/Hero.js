@@ -12,7 +12,7 @@ export default function Hero(props) {
   const [playerReady, setPlayerReady] = useState(false);
   const navigate = useNavigate();
 
-  if (!loaded) return <div>Heroer</div>;
+  if (!loaded) return <div className="hero"></div>;
 
   const { backdropPath, title, overview, videos, cast, id } = getFeatureMovie();
 
