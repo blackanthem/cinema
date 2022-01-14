@@ -20,7 +20,7 @@ export default function MovieDetails(props) {
     const found = data.find((movie) => movie.id === +movieId);
     // if not found display 404
     setMovie(found);
-    setDocumentTitle(found.title);
+    setDocumentTitle("Watch " + found.title);
   }, [isSuccess]);
 
   const handleClick = () => {

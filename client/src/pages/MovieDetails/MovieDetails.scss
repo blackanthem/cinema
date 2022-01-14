@@ -59,6 +59,15 @@
     }
 
     .showtime {
+      > div {
+        display: flex;
+        flex-wrap: wrap;
+
+        > p {
+          margin-right: 30px;
+        }
+      }
+
       span {
         display: block;
       }
