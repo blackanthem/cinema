@@ -27,7 +27,7 @@ export const api = createApi({
     }),
     postMovie: builder.mutation({
       query: (body) => ({
-        url: "/movie",
+        url: "/auth/movie",
         method: "post",
         body,
       }),
@@ -38,7 +38,7 @@ export const api = createApi({
         url: `/auth/movies/${movieId}?${queryString}`,
         method: "put",
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: "Movies", id }],
+      invalidatesTags: [{ type: "Movies", id: "LIST" }],
     }),
   }),
 });

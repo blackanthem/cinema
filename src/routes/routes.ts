@@ -7,9 +7,7 @@ import { sessionMiddleWare } from "../middlewares/session";
 const router = express.Router();
 
 router.get("/movies", movieController.getMovies);
-
 router.get("/search-movie", movieController.getMovieSearchResults);
-router.post("/movie", movieController.postMovie);
 
 router.post("/user", userController.postUser);
 router.post(

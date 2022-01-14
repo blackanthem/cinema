@@ -13,6 +13,8 @@ authRouter.use(passport.session());
 authRouter.use(isLoggedIn);
 
 authRouter.put("/movies/:movieId", movieController.updateMovie);
+authRouter.post("/movie", movieController.postMovie);
+
 authRouter.get("/user", userController.loggedIn);
 
 export { authRouter };
