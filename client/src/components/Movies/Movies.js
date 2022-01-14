@@ -5,13 +5,19 @@ import { setDocumentTitle } from "../../utils/setDocumentTitle";
 import { useEffect, useState } from "react";
 import { filterMovies, sortMovies } from "./moviesUtil";
 import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export function Movies(props) {
   const { data, isSuccess } = useGetMoviesQuery();
   const [movies, setMovies] = useState([]);
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   setDocumentTitle("Movie Catalogue");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [location.search]);
 
   useEffect(() => {
     if (!isSuccess) return;
