@@ -39,8 +39,12 @@ export default function EmployeeLogin() {
         navigate("/auth/movies");
       })
       .catch(() => {
-        toast.update("login", { type: "error", render: "Invalid Credentials" });
+        toast.error("Invalid Credentials", { toastId: "l" });
       });
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") handleClick();
   };
 
   const loginFormClasses = () => {
@@ -50,9 +54,9 @@ export default function EmployeeLogin() {
   };
 
   return (
-    <div className="employee-login page two-columns d-sidepadding d-toppadding">
+    <div className="employee-login page two-columns d-sidepadding d-toppadding ">
       <section className={loginFormClasses()}>
-        <div>
+        <div onKeyPress={handleKeyPress}>
           <h1>employee login</h1>
           <TextField
             label="code"
@@ -67,7 +71,7 @@ export default function EmployeeLogin() {
           />
         </div>
 
-        <Button text="Login" onClick={() => handleClick()} />
+        <Button text="Login" onClick={(e) => handleClick(e)} />
       </section>
     </div>
   );
