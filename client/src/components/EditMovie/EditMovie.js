@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
+  useGetMoviesQuery,
   usePostMovieMutation,
   useUpdateMovieMutation,
 } from "../../services/api";
@@ -35,6 +36,7 @@ export function EditMovie(props) {
   const location = useLocation();
   const [postMovie, {}] = usePostMovieMutation();
   const [updateMovie, {}] = useUpdateMovieMutation();
+  const { refetch } = useGetMoviesQuery();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -111,7 +113,6 @@ export function EditMovie(props) {
         toast.update(toastId, { render: "Movie added", ...toastSuccess });
       }
 
-      navigate("../movies");
       setTimeout(() => {
         toast.dismiss(toastId);
       }, 5000);
