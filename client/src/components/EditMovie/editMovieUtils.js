@@ -48,6 +48,8 @@ export function updateDataFormat(details) {
   let queryString = "";
 
   for (let [key, value] of Object.entries(queryParams)) {
+    if (typeof value.getMonth === "function")
+      value = value.toLocaleDateString();
     if (typeof value == "object") value = JSON.stringify(value);
     queryString += `${key}=${value}&`;
   }

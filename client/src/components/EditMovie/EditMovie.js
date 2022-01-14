@@ -96,12 +96,18 @@ export function EditMovie(props) {
       if (mode == "update") {
         toast.loading("Updating movie", { toastId });
 
-        await updateMovie(updateDataFormat(data));
+        const { data: result, error } = await updateMovie(
+          updateDataFormat(data)
+        );
+        if (result === undefined) throw Error(error);
+
         toast.update(toastId, { render: "Movie updated", ...toastSuccess });
       } else {
         toast.loading("Adding movie to catalogue", { toastId });
 
-        await postMovie(data);
+        const { data: result, error } = await postMovie(data);
+        if (result === undefined) throw Error(error);
+
         toast.update(toastId, { render: "Movie added", ...toastSuccess });
       }
 
@@ -110,7 +116,7 @@ export function EditMovie(props) {
         toast.dismiss(toastId);
       }, 5000);
     } catch (error) {
-      toast.error("Please try again", { toastId });
+      toast.error("Error", { toastId });
       console.error(error);
     }
   };
