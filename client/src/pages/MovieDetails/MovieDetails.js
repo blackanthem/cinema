@@ -1,6 +1,6 @@
 import "./MovieDetails.scss";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams,Link } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useGetMoviesQuery } from "../../services/api";
 import Button from "../../components/Button/Button";
 import ScrollRow from "../../components/ScrollRow/ScrollRow";
@@ -60,6 +60,8 @@ export default function MovieDetails() {
     return times.length === 0 ? "Not Available" : times;
   };
 
+  const canBuyTickets = typeof showtimes() !== "string";
+
   return (
     <div
       className="movie-details page two-columns d-sidepadding d-toppadding bg-img-dark respond"
@@ -70,7 +72,9 @@ export default function MovieDetails() {
         style={{ backgroundImage: `url(${movie.posterPath.max})` }}
       >
         <div>
-          <Button text="get tickets" onClick={() => handleClick()} />
+          {canBuyTickets && (
+            <Button text="get tickets" onClick={() => handleClick()} />
+          )}
         </div>
       </section>
       <section className="content two two-columns__right ">
@@ -85,15 +89,15 @@ export default function MovieDetails() {
           <div className="showtime">
             <h2>showtimes</h2>
             <div>{showtimes()}</div>
-            <Link to="buy-ticket" >Buy Tickets</Link>
+            {canBuyTickets && <Link to="buy-ticket">Buy Tickets</Link>}
           </div>
           <div className="videos">
             <h2>videos</h2>
-            <ScrollRow emptyText="No Videos Avaible" >{videos()}</ScrollRow>
+            <ScrollRow emptyText="No Videos Avaible">{videos()}</ScrollRow>
           </div>
           <div>
             <h2>cast</h2>
-            <ScrollRow emptyText="No Cast Avaible" >{cast()}</ScrollRow>
+            <ScrollRow emptyText="No Cast Avaible">{cast()}</ScrollRow>
           </div>
         </div>
       </section>
