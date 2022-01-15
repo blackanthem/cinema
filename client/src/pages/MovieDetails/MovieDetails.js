@@ -1,6 +1,6 @@
 import "./MovieDetails.scss";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams,Link } from "react-router-dom";
 import { useGetMoviesQuery } from "../../services/api";
 import Button from "../../components/Button/Button";
 import ScrollRow from "../../components/ScrollRow/ScrollRow";
@@ -85,6 +85,7 @@ export default function MovieDetails() {
           <div className="showtime">
             <h2>showtimes</h2>
             <div>{showtimes()}</div>
+            <Link to="buy-ticket" >Buy Tickets</Link>
           </div>
           <div className="videos">
             <h2>videos</h2>
