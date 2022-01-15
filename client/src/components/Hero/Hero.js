@@ -14,7 +14,8 @@ export default function Hero(props) {
 
   if (!loaded) return <div className="hero"></div>;
 
-  const { backdropPath, title, overview, videos, cast, id } = getFeatureMovie();
+  const { posterPath, backdropPath, title, overview, videos, cast, id } =
+    getFeatureMovie();
 
   const handleYtStateChange = (state) => {
     if (state === "playing") setPlaying(true);
@@ -51,7 +52,11 @@ export default function Hero(props) {
         />
       </div>
       <div className="hero__img">
-        <img src={backdropPath.max} alt="" />
+        <picture>
+          <source media="(max-width: 568px)" srcSet={posterPath.max} />
+          <source media="(max-width: 768px)" srcSet={backdropPath.med} />
+          <img src={backdropPath.max} alt={title} />
+        </picture>
         <div className="hero__filter"></div>
       </div>
 

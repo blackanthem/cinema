@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const breakpointSlice = createSlice({
   name: "bp",
-  initialState: { size: null },
+  initialState: { size: 4 },
   reducers: {
     getWindowSize() {
       const width = window.innerWidth;
 
-      if (width <= 568) return { size: "small" };
-      if (width <= 768) return { size: "medium" };
-      if (width <= 1100) return { size: "lg" };
-      return { size: null };
+      if (width <= 568) return { size: 1 };
+      if (width <= 768) return { size: 2 };
+      if (width <= 1100) return { size: 3 };
+      return { size: 4 };
     },
   },
 });
