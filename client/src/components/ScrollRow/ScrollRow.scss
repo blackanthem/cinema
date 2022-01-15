@@ -1,8 +1,11 @@
 .scroll-row {
   position: relative;
 
-  &:hover .scroll-button {
-    opacity: 1;
+  @media (hover: none) {
+    &:hover .scroll-button {
+      opacity: 1;
+      pointer-events: all;
+    }
   }
 
   &__wrapper {
@@ -10,6 +13,7 @@
     grid-template-rows: auto;
     grid-auto-columns: auto;
     grid-auto-flow: column;
+    justify-content: start;
     gap: 15px;
     overflow: auto;
     -ms-overflow-style: none;
