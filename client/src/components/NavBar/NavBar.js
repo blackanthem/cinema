@@ -13,7 +13,7 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    if (pathname !== "/") return setOpaque(false);
+    // if (pathname !== "/") return setOpaque(false);
 
     document.addEventListener("scroll", scrollListener);
 
