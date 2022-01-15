@@ -30,7 +30,7 @@ export default function Hero(props) {
   };
 
   const handleClick = () => {
-    navigate(`movie/${id}/buy-ticket`);
+    navigate(`/movie/${id}`);
   };
 
   const classNames = () => {
@@ -64,7 +64,7 @@ export default function Hero(props) {
         <div className="hero__text__overview">
           <h1>{title}</h1>
           <p>{overview}</p>
-          <Button text="get tickets" onClick={() => handleClick()} />
+          <Button text="read more" onClick={() => handleClick()} />
         </div>
         <div className="hero__text__play-button">
           <button onClick={() => setPlay(!play)} className={`${play}`}>
