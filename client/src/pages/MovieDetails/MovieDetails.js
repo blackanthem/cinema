@@ -45,8 +45,8 @@ export default function MovieDetails() {
       <YouTube key={key} width={380} height={200} controls={1} videoId={key} />
     ));
 
-  const showtimes = () =>
-    Object.entries(movie.showTimes).map(([key, value]) => (
+  const showtimes = () => {
+    const times = Object.entries(movie.showTimes).map(([key, value]) => (
       <p key={key}>
         <span className="day">{key}</span>
         {value.map((time) => (
@@ -56,6 +56,9 @@ export default function MovieDetails() {
         ))}
       </p>
     ));
+
+    return times.length === 0 ? "Not Available" : times;
+  };
 
   return (
     <div
@@ -85,11 +88,11 @@ export default function MovieDetails() {
           </div>
           <div className="videos">
             <h2>videos</h2>
-            <ScrollRow>{videos()}</ScrollRow>
+            <ScrollRow emptyText="No Videos Avaible" >{videos()}</ScrollRow>
           </div>
           <div>
             <h2>cast</h2>
-            <ScrollRow>{cast()}</ScrollRow>
+            <ScrollRow emptyText="No Cast Avaible" >{cast()}</ScrollRow>
           </div>
         </div>
       </section>

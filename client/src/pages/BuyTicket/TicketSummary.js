@@ -25,11 +25,11 @@ export function TicketSummary(props) {
         <div className="ticket-summary__price">
           <span className="ticket-summary__price__label color-grey">Total</span>
           <div className="ticket-summary__price__total">
-            GHS {!isNaN(numOfTickets) ? numOfTickets * ticketPrice : 0}
+            GHS {numOfTickets * ticketPrice}
           </div>
         </div>
+        <Button text="pay now" />
       </div>
-      <Button text="pay now" />
     </section>
   );
 }

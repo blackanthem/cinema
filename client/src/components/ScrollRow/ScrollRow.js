@@ -4,7 +4,7 @@ import { createRef, useEffect, useState } from "react";
 import { end, start } from "../../utils/scrollReachEnds";
 
 export default function ScrollRow(props) {
-  const { children } = props;
+  const { children, emptyText } = props;
 
   const ref = createRef();
   const [hideButtons, setHideButtons] = useState({ left: false, right: false });
@@ -40,7 +40,7 @@ export default function ScrollRow(props) {
         hide={hideButtons.left}
       />
       <div className="scroll-row__wrapper" ref={ref}>
-        {children}
+        {children?.length === 0 ? emptyText : children}
       </div>
       <ScrollButton
         direction="right"
