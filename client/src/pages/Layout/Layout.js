@@ -43,22 +43,24 @@ export function Layout(props) {
   return (
     <div className=" layout page two-columns d-sidepadding d-toppadding">
       <section className="two-columns__left nav">
-        <Textfield
-          placeholder="Search"
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-        />
+        <div>
+          <Textfield
+            placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
 
-        <div className={classNames()}>
-          <Link to={baseUrl} className="title" id="def">
-            Movies
-          </Link>
-          <Link to={`${baseUrl}?filter=now showing`} id="now">
-            now showing
-          </Link>
-          <Link to={`${baseUrl}?filter=coming soon`} id="soon">
-            coming soon
-          </Link>
+          <div className={classNames()}>
+            <Link to={baseUrl} className="title" id="def">
+              Movies
+            </Link>
+            <Link to={`${baseUrl}?filter=now showing`} id="now">
+              now showing
+            </Link>
+            <Link to={`${baseUrl}?filter=coming soon`} id="soon">
+              coming soon
+            </Link>
+          </div>
         </div>
       </section>
       <section>

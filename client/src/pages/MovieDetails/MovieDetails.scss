@@ -2,11 +2,6 @@
   .summary {
     background-size: cover;
     background-position: center center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    // align-items: flex-end;
-    // justify-content: stretch;
 
     &__text {
       > * {
@@ -30,8 +25,10 @@
   }
 
   .content {
-    > div {
-      margin-bottom: 80px;
+    &__wrapper {
+      > div {
+        margin-bottom: 80px;
+      }
     }
 
     .overview {
@@ -62,10 +59,7 @@
       > div {
         display: flex;
         flex-wrap: wrap;
-
-        > p {
-          margin-right: 30px;
-        }
+        gap: 16px 30px;
       }
 
       span {
@@ -90,9 +84,13 @@
     .videos {
       .yt-player,
       iframe {
-        width: 380px !important;
-        height: 200px !important;
+        width: 380px;
+        height: 200px;
         border-radius: var(--border-radius);
+
+        @media only screen and (max-width: 600px) {
+          width: 300px;
+        }
       }
 
       iframe {

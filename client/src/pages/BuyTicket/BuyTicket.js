@@ -57,7 +57,7 @@ export default function BuyTicket(props) {
 
   return (
     <div
-      className="buy-ticket page two-columns d-sidepadding d-toppadding bg-img-dark"
+      className="buy-ticket page two-columns d-sidepadding d-toppadding bg-img-dark respond"
       style={{ backgroundImage: `url(${movie.backdropPath.max})` }}
     >
       <TicketSummary
@@ -69,47 +69,49 @@ export default function BuyTicket(props) {
       <section className="ticket-form">
         <aside className="ticket-form__overview">
           <h1> {"Watch " + movie.title} </h1>
-          <p className="genre">{movie.genre} </p>
-          <p className="runtime">{movie.runtime} </p>
         </aside>
         <div className="ticket-form__section">
-          <h3>Ticket Details</h3>
-          <DayPicker
-            selectedDays={watchDate}
-            onDayClick={handleDayPickerClick}
-            disabledDays={getDisabledDays(movie)}
-          />
           <div>
-            <SelectInput
-              label="time"
-              options={watchTimes}
-              value={ticket.time}
-              onChange={(e) => handleInputChange(e)}
+            <h3>Ticket Details</h3>
+            <DayPicker
+              selectedDays={watchDate}
+              onDayClick={handleDayPickerClick}
+              disabledDays={getDisabledDays(movie)}
             />
-            <TextField
-              label="Number of tickets"
-              name="numOfTickets"
-              type="number"
-              min="1"
-              value={ticket.numOfTickets}
-              onChange={(e) => handleInputChange(e)}
-            />
+            <div>
+              <SelectInput
+                label="time"
+                options={watchTimes}
+                value={ticket.time}
+                onChange={(e) => handleInputChange(e)}
+              />
+              <TextField
+                label="Number of tickets"
+                name="numOfTickets"
+                type="number"
+                min="1"
+                value={ticket.numOfTickets}
+                onChange={(e) => handleInputChange(e)}
+              />
+            </div>
           </div>
         </div>
         <div className="ticket-form__section">
-          <h3>Personal Details</h3>
-          <TextField
-            label="full name"
-            name="fullName"
-            value={ticket.fullName}
-            onChange={(e) => handleInputChange(e)}
-          />
-          <TextField
-            label="email"
-            type="email"
-            value={ticket.email}
-            onChange={(e) => handleInputChange(e)}
-          />
+          <div>
+            <h3>Personal Details</h3>
+            <TextField
+              label="full name"
+              name="fullName"
+              value={ticket.fullName}
+              onChange={(e) => handleInputChange(e)}
+            />
+            <TextField
+              label="email"
+              type="email"
+              value={ticket.email}
+              onChange={(e) => handleInputChange(e)}
+            />
+          </div>
         </div>
       </section>
     </div>
