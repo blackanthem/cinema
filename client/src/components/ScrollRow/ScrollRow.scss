@@ -1,8 +1,10 @@
 .scroll-row {
   position: relative;
 
-  &:hover .scroll-button {
-    opacity: 1;
+  @media (hover: none) {
+    &:hover .scroll-button {
+      opacity: 1;
+    }
   }
 
   &__wrapper {
