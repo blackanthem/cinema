@@ -16,9 +16,7 @@ export default function EmployeeLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setDocumentTitle("Login");
-  }, []);
+  setDocumentTitle("Login");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
