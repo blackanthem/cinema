@@ -18,7 +18,12 @@ export default function MovieDetails() {
   useEffect(() => {
     if (!isSuccess) return;
     const found = data.find((movie) => movie.id === +movieId);
-    // if not found display 404
+
+    if (found === undefined) {
+      navigate("/404");
+      return;
+    }
+
     setMovie(found);
     setDocumentTitle("Watch " + found.title);
   }, [isSuccess]);

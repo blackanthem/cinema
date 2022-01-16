@@ -1,0 +1,42 @@
+.four0four {
+  position: relative;
+
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__img {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      @media only screen and (max-width: 568px) {
+        object-position:  right;
+      }
+    }
+  }
+
+  &__filter {
+    background-color: #9e9e9e;
+    mix-blend-mode: multiply;
+  }
+
+  &__text {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 140px;
+
+    a {
+      color: var(--red);
+    }
+
+    p {
+      max-width: 425px;
+    }
+  }
+}

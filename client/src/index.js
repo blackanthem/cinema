@@ -11,6 +11,7 @@ import MovieDetails from "./pages/MovieDetails/MovieDetails";
 import BuyTicket from "./pages/BuyTicket/BuyTicket";
 import EmployeeLogin from "./pages/EmployeeLogin/EmployeeLogin";
 import { RequireAuth } from "./components/Auth/RequireAuth";
+import { Four0Four } from "./pages/404/404";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.render(
             <Route path="/movie/:id/buy-ticket" element={<BuyTicket />} />
             <Route path="/login" element={<EmployeeLogin />} />
             <Route path="auth/*" element={<RequireAuth />} />
+            <Route path="*" element={<Four0Four />} />
           </Route>
         </Routes>
       </BrowserRouter>

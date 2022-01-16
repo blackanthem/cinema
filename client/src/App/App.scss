@@ -9,6 +9,10 @@
   --body-color: #e2e2ee;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;

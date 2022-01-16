@@ -4,11 +4,22 @@ import ScrollRow from "../../components/ScrollRow/ScrollRow";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import "./Home.scss";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Home() {
   const { data, isSuccess } = useGetMoviesQuery();
+  const location = useLocation();
 
-  setDocumentTitle("Cinema App by Steven Yirenkyi")
+  useEffect(() => {
+    const state = location?.state?.from404;
+    if (state)
+      document
+        .getElementById("now-showing")
+        .scrollIntoView({ block: "center" });
+  }, []);
+
+  setDocumentTitle("Cinema App by Steven Yirenkyi");
 
   const featureMovie = () => data.find((movie) => movie.isFeature);
 
@@ -37,7 +48,7 @@ export default function Home() {
         <Hero getFeatureMovie={() => featureMovie()} loaded={isSuccess} />
       </section>
 
-      <section className="d-sidepadding">
+      <section className="d-sidepadding" id="now-showing">
         <h2>Now showing</h2>
         {!data && <ScrollRow>{emptyCards()}</ScrollRow>}
         {data && <ScrollRow>{nowShowing()}</ScrollRow>}

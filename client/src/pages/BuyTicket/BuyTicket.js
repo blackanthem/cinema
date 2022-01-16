@@ -9,10 +9,12 @@ import { dateString, getWeekday, getDisabledDays } from "./buyTicketUtils";
 import DayPicker from "react-day-picker";
 import { TicketSummary } from "./TicketSummary";
 import { Loader } from "../../components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 export default function BuyTicket(props) {
   const { id: movieId } = useParams();
   const { data, isSuccess } = useGetMoviesQuery();
+  const navigate = useNavigate();
   const [movie, setMovie] = useState({});
   const [watchDate, setWatchDate] = useState();
   const [ticket, setTicket] = useState({
@@ -26,7 +28,12 @@ export default function BuyTicket(props) {
   useEffect(() => {
     if (!isSuccess) return;
     const found = data.find((movie) => movie.id === +movieId);
-    //if not found display 404
+
+    if (found === undefined) {
+      navigate("/404");
+      return;
+    }
+
     setDocumentTitle("Buy Tickets - " + found.title);
     setMovie(found);
     setTicket({ ...ticket, ticketPrice: found.ticketPrice });
