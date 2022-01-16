@@ -36,12 +36,11 @@ export function EditMovie(props) {
   const location = useLocation();
   const [postMovie, {}] = usePostMovieMutation();
   const [updateMovie, {}] = useUpdateMovieMutation();
-  const { refetch } = useGetMoviesQuery();
+  const { data } = useGetMoviesQuery();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!location?.state) return;
-
     setMovie(location.state);
     setDetails(initialDetailsState);
   }, [location?.state]);
@@ -91,34 +90,29 @@ export function EditMovie(props) {
       showtimes: postShowtimeFormat(details.showtimes),
     };
 
-    const toastId = "edit";
-    const toastSuccess = { isLoading: false, type: "success" };
-
     try {
       if (mode == "update") {
-        toast.loading("Updating movie", { toastId });
+        toast("Updating movie", { autoClose: 1000 });
 
         const { data: result, error } = await updateMovie(
           updateDataFormat(data)
         );
+
         if (result === undefined) throw Error(error);
 
-        toast.update(toastId, { render: "Movie updated", ...toastSuccess });
+        toast.success("Movie updated");
       } else {
-        toast.loading("Adding movie to catalogue", { toastId });
+        toast("Adding movie to catalogue");
 
         const { data: result, error } = await postMovie(data);
         if (result === undefined) throw Error(error);
 
-        toast.update(toastId, { render: "Movie added", ...toastSuccess });
+        toast("Movie added");
       }
 
-      setTimeout(() => {
-        toast.dismiss(toastId);
-      }, 5000);
+      navigate("/auth/movies");
     } catch (error) {
-      toast.error("Error", { toastId });
-      console.error(error);
+      toast.error("Could not post data");
     }
   };
 

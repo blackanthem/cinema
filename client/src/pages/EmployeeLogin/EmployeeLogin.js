@@ -30,17 +30,18 @@ export default function EmployeeLogin() {
     });
   };
 
-  const handleClick = () => {
-    signIn(credentials)
-      .unwrap()
-      .then(({ firstName }) => {
-        toast.success(`Welcome ${firstName}`, { toastId: "login" });
-        dispatch(login());
-        navigate("/auth/movies");
-      })
-      .catch(() => {
-        toast.error("Invalid Credentials", { toastId: "l" });
-      });
+  const handleClick = async () => {
+    try {
+      const { error, data } = await signIn(credentials);
+      if (data === undefined) throw error;
+
+      toast.success("Welcome " + data.firstName, { position: "bottom-left" });
+
+      dispatch(login());
+      navigate("/auth/movies");
+    } catch (error) {
+      toast.error("Invalid credentials", { position: "bottom-left" });
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -71,7 +72,7 @@ export default function EmployeeLogin() {
           />
         </div>
 
-        <Button text="Login" onClick={(e) => handleClick(e)} />
+        <Button text="Login" onClick={() => handleClick()} />
       </section>
     </div>
   );

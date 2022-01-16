@@ -8,7 +8,9 @@ import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 export function Movies(props) {
-  const { data, isSuccess } = useGetMoviesQuery();
+  const { data, isSuccess } = useGetMoviesQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const [movies, setMovies] = useState([]);
   const [searchParams] = useSearchParams();
   const location = useLocation();
@@ -36,7 +38,7 @@ export function Movies(props) {
         <MovieCard
           movie={movie}
           key={movie.id}
-          to={"../edit-movie"}
+          to={"/auth/edit-movie"}
           state={movie}
         />
       ))}

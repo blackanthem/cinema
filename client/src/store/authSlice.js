@@ -13,7 +13,7 @@ export const authSlice = createSlice({
       state.loggedIn = true;
     },
     logout(state) {
-      toast.error("Session expired", { toastId: "login" });
+      toast.error("Session expired", {});
       state.loggedIn = false;
     },
   },

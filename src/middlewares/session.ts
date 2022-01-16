@@ -6,4 +6,5 @@ export const sessionMiddleWare = session({
   resave: false,
   cookie: { maxAge: 600 * 1000, path: "/v1" },
   saveUninitialized: false,
+  rolling: true,
 });

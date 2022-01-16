@@ -1,13 +1,6 @@
 .scroll-row {
   position: relative;
 
-  @media (hover: none) {
-    &:hover .scroll-button {
-      opacity: 1;
-      pointer-events: all;
-    }
-  }
-
   &__wrapper {
     display: grid;
     grid-template-rows: auto;
@@ -25,3 +18,10 @@
     }
   }
 }
+
+// @media not all and (hover: hover) {
+.scroll-row:hover .scroll-button {
+  opacity: 1;
+  pointer-events: all;
+}
+// }
