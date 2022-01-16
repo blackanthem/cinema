@@ -19,7 +19,7 @@ export function TicketSummary(props) {
         <TicketSummaryRow
           label="email"
           value={email || "Enter Email"}
-          modifier="unset"
+          className="unset"
         />
         <hr />
         <div className="ticket-summary__price">
@@ -34,9 +34,9 @@ export function TicketSummary(props) {
   );
 }
 
-function TicketSummaryRow({ label, value, modifier }) {
+function TicketSummaryRow({ label, value, className }) {
   return (
-    <div className={`ticket-summary__row ${modifier}`}>
+    <div className={`ticket-summary__row ${className}`}>
       <span className="ticket-summary__row__label color-grey">{label}</span>
       <span className="ticket-summary__row__value">{value}</span>
     </div>

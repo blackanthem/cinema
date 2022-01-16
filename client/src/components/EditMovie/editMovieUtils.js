@@ -5,8 +5,8 @@ export function postShowtimeFormat(showtimes) {
 
   showtimes.forEach(({ time, selectedDays }) => {
     selectedDays.forEach((day) => {
-      if (showtime.hasOwnProperty(day)) showtime[day].push(time);
-      else showtime[day] = [time];
+      if (showtime.hasOwnProperty(day)) showtime[day].push(time.toUpperCase());
+      else showtime[day] = [time.toUpperCase()];
     });
   });
 
@@ -39,6 +39,8 @@ export function detailsFormat(movie) {
     isFeature: movie.isFeature,
     showtimes: showtimeFormat(movie.showTimes),
   };
+
+  console.log(movie);
 
   return details;
 }

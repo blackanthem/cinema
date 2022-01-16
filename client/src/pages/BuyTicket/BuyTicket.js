@@ -44,7 +44,6 @@ export default function BuyTicket(props) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
 
     setTicket({ ...ticket, [name]: value });
   };
