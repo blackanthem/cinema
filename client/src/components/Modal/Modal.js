@@ -1,9 +1,9 @@
-import { getKey } from "../../utils/getKey";
 import "./Modal.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Loader } from "../Loader/Loader";
 
 export function Modal(props) {
-  const { show, movies, searchResults, hide } = props;
+  const { show, movies, searchResults, hide, fetching } = props;
   const navigate = useNavigate();
 
   if (!show) return <div></div>;
@@ -40,17 +40,21 @@ export function Modal(props) {
         </section>
         <section>
           <p className="title">Found Movies</p>
-          <div className="modal__items">
-            {searchResults?.length ? null : <p>No Movies</p>}
-            {searchResults?.map((movie) => (
-              <Item
-                item={movie}
-                key={movie.id}
-                to="/auth/add-movie"
-                onClick={(data) => handleClick(data)}
-              />
-            ))}
-          </div>
+          {fetching ? (
+            <Loader />
+          ) : (
+            <div className="modal__items">
+              {searchResults?.length ? null : <p>No Movies</p>}
+              {searchResults?.map((movie) => (
+                <Item
+                  item={movie}
+                  key={movie.id}
+                  to="/auth/add-movie"
+                  onClick={(data) => handleClick(data)}
+                />
+              ))}
+            </div>  
+          )}
         </section>
       </div>
     </div>

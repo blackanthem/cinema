@@ -6,6 +6,7 @@ import "./Home.scss";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Loader } from "../../components/Loader/Loader";
 
 export default function Home() {
   const { data, isSuccess } = useGetMoviesQuery();
@@ -37,10 +38,11 @@ export default function Home() {
         <MovieCard movie={movie} key={movie.id} to={`/movie/${movie.id}`} />
       ));
 
-  const emptyCards = () =>
-    Array(4)
-      .fill(null)
-      .map(() => <MovieCard movie={null} key={Math.random() * 10} />);
+  const loader = (
+    <div style={{ height: 464, width: "100%" }}>
+      <Loader />
+    </div>
+  );
 
   return (
     <div className="home page">
@@ -50,13 +52,13 @@ export default function Home() {
 
       <section className="d-sidepadding" id="now-showing">
         <h2>Now showing</h2>
-        {!data && <ScrollRow>{emptyCards()}</ScrollRow>}
+        {!data && loader}
         {data && <ScrollRow>{nowShowing()}</ScrollRow>}
       </section>
 
       <section className="d-sidepadding">
         <h2>coming soon</h2>
-        {!data && <ScrollRow>{emptyCards()}</ScrollRow>}
+        {!data && loader}
         {data && <ScrollRow>{comingSoon()}</ScrollRow>}
       </section>
     </div>

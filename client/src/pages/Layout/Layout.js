@@ -12,7 +12,7 @@ export function Layout(props) {
   const [activeNav, setActiveNav] = useState();
   const [showModal, setShowModal] = useState(false);
   const location = useLocation();
-  const { data: searchResults } = useSearchMoviesQuery(search);
+  const { data: searchResults, isFetching } = useSearchMoviesQuery(search);
   const { movies } = useGetMoviesQuery(undefined, {
     selectFromResult: ({ data }) => ({
       movies: data?.filter((movie) =>
@@ -70,6 +70,7 @@ export function Layout(props) {
           movies={movies}
           searchResults={searchResults}
           hide={() => setShowModal(false)}
+          fetching={isFetching}
         />
       </section>
     </div>
