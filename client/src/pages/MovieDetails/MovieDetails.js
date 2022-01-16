@@ -7,6 +7,7 @@ import ScrollRow from "../../components/ScrollRow/ScrollRow";
 import CastCard from "../../components/CastCard/CastCard";
 import YouTube from "../../components/YouTube/YouTube";
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
+import { Loader } from "../../components/Loader/Loader";
 
 export default function MovieDetails() {
   const { id: movieId } = useParams();
@@ -26,9 +27,7 @@ export default function MovieDetails() {
     navigate("buy-ticket");
   };
 
-  // todo loading component
-
-  if (!movie?.title) return <div style={{ height: "100vh" }}></div>;
+  if (!movie?.title) return <Loader />;
 
   const cast = () =>
     movie.cast.map((person) => (

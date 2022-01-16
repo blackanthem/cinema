@@ -8,6 +8,7 @@ import { setDocumentTitle } from "../../utils/setDocumentTitle";
 import { dateString, getWeekday, getDisabledDays } from "./buyTicketUtils";
 import DayPicker from "react-day-picker";
 import { TicketSummary } from "./TicketSummary";
+import { Loader } from "../../components/Loader/Loader";
 
 export default function BuyTicket(props) {
   const { id: movieId } = useParams();
@@ -31,12 +32,7 @@ export default function BuyTicket(props) {
     setTicket({ ...ticket, ticketPrice: found.ticketPrice });
   }, [isSuccess]);
 
-  if (!movie?.title)
-    return (
-      <div className="buy-ticket page two-columns d-sidepadding d-toppadding bg-img-dark">
-        <section className="loading two-columns__left"></section>
-      </div>
-    );
+  if (!movie?.title) return <Loader />;
 
   const handleDayPickerClick = (day, { selected, disabled }) => {
     if (disabled) return;

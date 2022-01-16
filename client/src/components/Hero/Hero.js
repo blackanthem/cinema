@@ -4,6 +4,7 @@ import YouTube from "../YouTube/YouTube";
 import { useState } from "react";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../Loader/Loader";
 
 export default function Hero(props) {
   const { getFeatureMovie, loaded } = props;
@@ -12,7 +13,12 @@ export default function Hero(props) {
   const [playerReady, setPlayerReady] = useState(false);
   const navigate = useNavigate();
 
-  if (!loaded) return <div className="hero"></div>;
+  if (!loaded)
+    return (
+      <div className="hero">
+        <Loader />
+      </div>
+    );
 
   const { posterPath, backdropPath, title, overview, videos, cast, id } =
     getFeatureMovie();
