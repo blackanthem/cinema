@@ -33,12 +33,12 @@ export default function EmployeeLogin() {
       const { error, data } = await signIn(credentials);
       if (data === undefined) throw error;
 
-      toast.success("Welcome " + data.firstName, { position: "bottom-left" });
+      toast.success("Welcome " + data.firstName);
 
       dispatch(login());
       navigate("/auth/movies");
     } catch (error) {
-      toast.error("Invalid credentials", { position: "bottom-left" });
+      toast.error("Invalid credentials");
     }
   };
 
