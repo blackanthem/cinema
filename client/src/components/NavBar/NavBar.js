@@ -8,7 +8,7 @@ export default function NavBar() {
   const { pathname } = useLocation();
 
   const scrollListener = () => {
-    if (window.scrollY < 200) setOpaque(false);
+    if (window.scrollY < 150) setOpaque(false);
     else setOpaque(true);
   };
 

@@ -92,11 +92,11 @@ export default function MovieDetails() {
           </div>
           <div className="videos">
             <h2>videos</h2>
-            <ScrollRow emptyText="No Videos Avaible">{videos()}</ScrollRow>
+            <ScrollRow emptyText="Not Available">{videos()}</ScrollRow>
           </div>
           <div>
             <h2>cast</h2>
-            <ScrollRow emptyText="No Cast Avaible">{cast()}</ScrollRow>
+            <ScrollRow emptyText="Not Available">{cast()}</ScrollRow>
           </div>
         </div>
       </section>
