@@ -39,7 +39,14 @@ export default function Home() {
       ));
 
   const loader = (
-    <div style={{ height: 464, width: "100%" }}>
+    <div
+      style={{
+        height: 464,
+        width: "100%",
+        display: "flex",
+        alignItems: "flex-start",
+      }}
+    >
       <Loader />
     </div>
   );
