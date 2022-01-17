@@ -1,6 +1,37 @@
 .nav {
+
+  &__search{
+    position: relative;
+  }
+
+  &__clear-search {
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 28px;
+    right: 10px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    color: #9e0900;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+
+
+    &:hover {
+      border-color: #9e0900;
+    }
+  }
+
   .text-field {
     margin-bottom: 40px;
+
+    input{
+      padding-right: 45px;
+    }
   }
 
   &__links {
@@ -22,8 +53,6 @@
       font-weight: bold;
       margin-bottom: 7px;
     }
-
-
 
     &.def #def {
       background-color: #212127;

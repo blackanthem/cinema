@@ -6,6 +6,7 @@ import { useGetMoviesQuery, useSearchMoviesQuery } from "../../services/api";
 import { useLocation } from "react-router-dom";
 import "./Layout.scss";
 import { Link } from "react-router-dom";
+import { MdClear } from "react-icons/md";
 
 export function Layout(props) {
   const [search, setSearch] = useState("");
@@ -44,11 +45,16 @@ export function Layout(props) {
     <div className=" layout page two-columns d-sidepadding d-toppadding">
       <section className="two-columns__left nav">
         <div>
-          <Textfield
-            placeholder="Search"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
+          <div className="nav__search" >
+            <Textfield
+              placeholder="Search"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
+            <span className="nav__clear-search" onClick={() => setSearch("")}>
+              <MdClear />
+            </span>
+          </div>
 
           <div className={classNames()}>
             <Link to={baseUrl} className="title" id="def">
