@@ -6,7 +6,7 @@ export function Modal(props) {
   const { show, movies, searchResults, hide, fetching } = props;
   const navigate = useNavigate();
 
-  if (!show) return <div></div>;
+  if (!show) return null;
 
   const className = () => {
     let classList = "modal modal__wrapper";
