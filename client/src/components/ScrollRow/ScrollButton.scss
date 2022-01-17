@@ -13,6 +13,11 @@
   transition: opacity 0.2s;
   pointer-events: none;
 
+  @media only screen and (max-width: 568px) {
+    display: none;
+    pointer-events: none !important;
+  }
+
   &.hide {
     opacity: 0 !important;
     pointer-events: none;
