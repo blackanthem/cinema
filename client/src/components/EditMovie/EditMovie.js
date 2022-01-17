@@ -20,11 +20,19 @@ import {
 import { setDocumentTitle } from "../../utils/setDocumentTitle";
 import { toast } from "react-toastify";
 
+const today = new Date();
+
+function getTomorrow() {
+  let tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return tomorrow;
+}
+
 const initialDetailsState = {
   status: "",
   ticketPrice: 0,
-  startShowingDate: "",
-  stopShowingDate: "",
+  startShowingDate: today,
+  stopShowingDate: getTomorrow(),
   isFeature: false,
   showtimes: [],
 };
