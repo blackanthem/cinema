@@ -53,7 +53,7 @@ export function Modal(props) {
                   onClick={(data) => handleClick(data)}
                 />
               ))}
-            </div>  
+            </div>
           )}
         </section>
       </div>

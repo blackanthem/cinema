@@ -10,6 +10,7 @@ import DayPicker from "react-day-picker";
 import { TicketSummary } from "./TicketSummary";
 import { Loader } from "../../components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function BuyTicket(props) {
   const { id: movieId } = useParams();
@@ -55,6 +56,10 @@ export default function BuyTicket(props) {
     setTicket({ ...ticket, [name]: value });
   };
 
+  const handleClick = () => {
+    toast.success("Success", { toastId: "2" });
+  };
+
   const watchTimes = movie.showTimes[getWeekday(watchDate)];
 
   return (
@@ -66,6 +71,7 @@ export default function BuyTicket(props) {
         title={movie.title}
         ticket={ticket}
         date={dateString(watchDate)}
+        onClick={() => handleClick()}
       />
 
       <section className="ticket-form">

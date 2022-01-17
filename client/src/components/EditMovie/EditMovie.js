@@ -107,7 +107,7 @@ export function EditMovie(props) {
         const { data: result, error } = await postMovie(data);
         if (result === undefined) throw Error(error);
 
-        toast("Movie added");
+        toast.success("Movie added");
       }
 
       navigate("/auth/movies");

@@ -1,7 +1,7 @@
 import Button from "../../components/Button/Button";
 
 export function TicketSummary(props) {
-  const { title, ticket, date } = props;
+  const { title, ticket, date, onClick } = props;
   const { time, numOfTickets, email, fullName, ticketPrice } = ticket;
 
   return (
@@ -28,7 +28,7 @@ export function TicketSummary(props) {
             GHS {numOfTickets * ticketPrice}
           </div>
         </div>
-        <Button text="pay now" />
+        <Button text="pay now" onClick={() => onClick()} />
       </div>
     </section>
   );
